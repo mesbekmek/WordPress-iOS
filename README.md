@@ -51,3 +51,4 @@ In order to login to a WordPress.com account, you will need to create an account
 ## License
 
 WordPress for iOS is an Open Source project covered by the [GNU General Public License version 2](LICENSE).
+
