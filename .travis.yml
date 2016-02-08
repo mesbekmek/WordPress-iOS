@@ -8,6 +8,8 @@ notifications:
 install:
 - gem install xcpretty-travis-formatter
 - pod install
+cache:
+- cocoapods
 script:
 - Scripts/build.sh
 env:
