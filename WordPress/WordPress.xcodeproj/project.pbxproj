@@ -661,6 +661,7 @@
 		FA4ADADA1C509FE400F858D7 /* SiteManagementServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4ADAD91C509FE400F858D7 /* SiteManagementServiceTests.swift */; };
 		FA5C740C1C596E69000B528C /* DeleteSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C740A1C596E69000B528C /* DeleteSiteViewController.swift */; };
 		FA5C740F1C599BA7000B528C /* TableViewHeaderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5C740E1C599BA7000B528C /* TableViewHeaderDetailView.swift */; };
+		FA647AD41C6420800065EEF7 /* ExportWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA647AD31C6420800065EEF7 /* ExportWebViewController.swift */; };
 		FA77E02A1BE17CFC006D45E0 /* ThemeBrowserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77E0291BE17CFC006D45E0 /* ThemeBrowserHeaderView.swift */; };
 		FA87F1AC1C4F2DEF004A92D1 /* SiteManagementServiceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87F1AB1C4F2DEF004A92D1 /* SiteManagementServiceRemote.swift */; };
 		FA9E74481C50382D00C6B1D2 /* SiteManagementServiceRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E74471C50382D00C6B1D2 /* SiteManagementServiceRemoteTests.swift */; };
@@ -1799,6 +1800,7 @@
 		FA4ADAD91C509FE400F858D7 /* SiteManagementServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteManagementServiceTests.swift; sourceTree = "<group>"; };
 		FA5C740A1C596E69000B528C /* DeleteSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteSiteViewController.swift; sourceTree = "<group>"; };
 		FA5C740E1C599BA7000B528C /* TableViewHeaderDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderDetailView.swift; sourceTree = "<group>"; };
+		FA647AD31C6420800065EEF7 /* ExportWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportWebViewController.swift; sourceTree = "<group>"; };
 		FA77E0291BE17CFC006D45E0 /* ThemeBrowserHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeBrowserHeaderView.swift; sourceTree = "<group>"; };
 		FA87F1AB1C4F2DEF004A92D1 /* SiteManagementServiceRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteManagementServiceRemote.swift; sourceTree = "<group>"; };
 		FA9E74471C50382D00C6B1D2 /* SiteManagementServiceRemoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteManagementServiceRemoteTests.swift; sourceTree = "<group>"; };
@@ -3945,6 +3947,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5C740A1C596E69000B528C /* DeleteSiteViewController.swift */,
+				FA647AD31C6420800065EEF7 /* ExportWebViewController.swift */,
 				FAE420191C5AEFE100C1D036 /* StartOverViewController.swift */,
 				FA5C740E1C599BA7000B528C /* TableViewHeaderDetailView.swift */,
 			);
@@ -4671,6 +4674,7 @@
 				5D3D559A18F88C5E00782892 /* ReaderPostServiceRemote.m in Sources */,
 				5DED0E181B432E0400431FCD /* SourcePostAttribution.m in Sources */,
 				B52C4C7F199D74AE009FD823 /* NoteTableViewCell.swift in Sources */,
+				FA647AD41C6420800065EEF7 /* ExportWebViewController.swift in Sources */,
 				315FC2C51A2CB29300E7CDA2 /* MeHeaderView.m in Sources */,
 				082AB9D61C4EEA72000CA523 /* RemotePostTag.m in Sources */,
 				5DED0E141B42E3E400431FCD /* RemoteSourcePostAttribution.m in Sources */,

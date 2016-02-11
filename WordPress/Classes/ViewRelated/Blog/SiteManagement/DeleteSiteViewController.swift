@@ -177,16 +177,8 @@ public class DeleteSiteViewController : UITableViewController
     // MARK: - Actions
 
     private func exportContent() {
-        tableView.deselectSelectedRowWithAnimation(true)
-        
-        let exportTitle = NSLocalizedString("Export Content", comment: "Title of alert when Export Content selected")
-        let exportMessage = NSLocalizedString("Currently exporting is only available through the web interface. Please go to WordPress.com in your browser to export content.", comment: "Message of alert when Export Content selected")
-        let alertController = UIAlertController(title: exportTitle, message: exportMessage, preferredStyle: .Alert)
-        
-        let okTitle = NSLocalizedString("OK", comment: "Alert dismissal title")
-        alertController.addDefaultActionWithTitle(okTitle, handler: nil)
-        
-        presentViewController(alertController, animated: true, completion: nil)
+        let webViewController = ExportWebViewController(blog: blog)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
 
     private func confirmDeleteSite() {
