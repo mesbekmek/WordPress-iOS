@@ -3,7 +3,7 @@ import AFNetworking
 
 /// ExportWebViewController adds support for export content XML download
 ///
-public class ExportWebViewController: WPWebViewController
+public class ExportWebViewController: WPWebViewController, UIDocumentInteractionControllerDelegate
 {
     // MARK: - Properties: must be set by creator
     
@@ -65,12 +65,41 @@ public class ExportWebViewController: WPWebViewController
            let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false) where components.path == Export.downloadPath,
            let queryItems = components.queryItems where queryItems.contains(Export.downloadQuery()) {
             
-            // TODO: Save to selected location
+            let session = AFHTTPSessionManager()
+            let downloadTask = session.downloadTaskWithRequest(request,
+                progress: nil,
+                destination: { file, response in
+                    let file = response.suggestedFilename ?? Export.dataFile
+                    let path = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(file)
+                    let url = NSURL(fileURLWithPath: path, isDirectory: false)
+                    return url
+                },
+                completionHandler: { response, filePath, error in
+                    guard let file = filePath where error == nil else {
+                        print("completionHandler: \(error)")
+                        return
+                    }
+
+                    let controller = UIDocumentInteractionController(URL: file)
+                    controller.delegate = self
+                    controller.presentOptionsMenuFromRect(self.view.frame, inView: self.view, animated: true)
+                    })
+            downloadTask.resume()
             
             return false
         }
 
         return super.webView(webView, shouldStartLoadWithRequest: request, navigationType: navigationType)
+    }
+
+    // MARK: - UIDocumentInteractionControllerDelegate
+
+    public func documentInteractionController(controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?) {
+        print("willBeginSendingToApplication: \(application)")
+    }
+
+    public func documentInteractionController(controller: UIDocumentInteractionController, didEndSendingToApplication application: String?) {
+        print("didEndSendingToApplication: \(application)")
     }
 
 }
