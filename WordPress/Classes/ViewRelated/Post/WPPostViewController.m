@@ -1954,6 +1954,11 @@ EditImageDetailsViewControllerDelegate
 
 - (void)editorDidFinishLoadingDOM:(WPEditorViewController *)editorController
 {
+    [self.editorView setImageEditText:NSLocalizedString(@"Edit",
+                                                        @"Title of the edit-image button in the post editor.")];
+    [self.editorView setImageTryAgainUploadText:NSLocalizedString(@"Tap to try again!",
+                                                                  @"Message shown when an image upload fails in the post editor.")];
+    
     [self refreshUIForCurrentPost];
 }
 
