@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Ezx-Kr-dOq">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="qAY-ge-0cZ" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YmC-aK-Yl3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Tao-m9-FwL" kind="relationship" relationship="rootViewController" id="gDA-wb-VdC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSg-e7-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="631" y="311"/>
+        </scene>
+        <!--Signin View Controller-->
+        <scene sceneID="qY6-J5-fEW">
+            <objects>
+                <viewController storyboardIdentifier="SigninViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tao-m9-FwL" customClass="SigninViewController" customModule="WordPress" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fWg-2A-gdx"/>
+                        <viewControllerLayoutGuide type="bottom" id="bLD-PM-WkM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="or0-7M-vt1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYS-s4-06N">
+                                <rect key="frame" x="562" y="36" width="22" height="22"/>
+                                <accessibility key="accessibilityConfiguration" label="Help"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="2yF-R1-iGj"/>
+                                    <constraint firstAttribute="height" constant="22" id="Llb-k3-M1W"/>
+                                </constraints>
+                                <state key="normal" image="btn-help"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-wp" translatesAutoresizingMaskIntoConstraints="NO" id="aAD-ma-8oD">
+                                <rect key="frame" x="268" y="127" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="5ra-CS-5A8"/>
+                                    <constraint firstAttribute="height" constant="64" id="Z6b-xY-Fhs"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cB1-fT-M12">
+                                <rect key="frame" x="228" y="508" width="144" height="30"/>
+                                <state key="normal" title="Add Self-Hosted Site">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5B-Ix-mpl">
+                                <rect key="frame" x="246" y="554" width="107" height="30"/>
+                                <state key="normal" title="Create Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vLP-Cr-5QN">
+                                <rect key="frame" x="0.0" y="199" width="600" height="202"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="202" placeholder="YES" id="c3z-X0-R5F"/>
+                                    <constraint firstAttribute="width" constant="320" id="eH3-Le-W7r"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eH3-Le-W7r"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="eH3-Le-W7r"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="YJf-Hx-hsj" kind="embed" id="YRw-gK-PvX"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.52941176470588236" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lYS-s4-06N" secondAttribute="trailing" constant="16" id="628-Zn-Ng2"/>
+                            <constraint firstItem="cB1-fT-M12" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="AW2-f9-fHP"/>
+                            <constraint firstAttribute="trailing" secondItem="vLP-Cr-5QN" secondAttribute="trailing" id="ByG-MP-ofx"/>
+                            <constraint firstItem="lYS-s4-06N" firstAttribute="top" secondItem="fWg-2A-gdx" secondAttribute="bottom" constant="16" id="DCN-nG-cqb"/>
+                            <constraint firstItem="vLP-Cr-5QN" firstAttribute="leading" secondItem="or0-7M-vt1" secondAttribute="leading" id="GeC-7f-XNa"/>
+                            <constraint firstItem="vLP-Cr-5QN" firstAttribute="top" secondItem="aAD-ma-8oD" secondAttribute="bottom" constant="8" id="JV4-B5-xV6"/>
+                            <constraint firstItem="bLD-PM-WkM" firstAttribute="top" secondItem="H5B-Ix-mpl" secondAttribute="bottom" constant="16" id="LSV-x0-7Tb"/>
+                            <constraint firstItem="aAD-ma-8oD" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="MFJ-Oc-Vry"/>
+                            <constraint firstItem="vLP-Cr-5QN" firstAttribute="centerY" secondItem="or0-7M-vt1" secondAttribute="centerY" id="Uxe-r6-TgV"/>
+                            <constraint firstItem="H5B-Ix-mpl" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="f3Q-JF-kDg"/>
+                            <constraint firstItem="H5B-Ix-mpl" firstAttribute="top" secondItem="cB1-fT-M12" secondAttribute="bottom" constant="16" id="hTE-Am-FDP"/>
+                            <constraint firstItem="vLP-Cr-5QN" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="jNz-iM-acD"/>
+                        </constraints>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="ByG-MP-ofx"/>
+                                <exclude reference="GeC-7f-XNa"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="uLX-3k-DSx"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="containerView" destination="vLP-Cr-5QN" id="jSA-cM-UYU"/>
+                        <outlet property="createAccountButton" destination="H5B-Ix-mpl" id="FQz-q6-l6H"/>
+                        <outlet property="helpButton" destination="lYS-s4-06N" id="mQU-y5-z4Q"/>
+                        <outlet property="icon" destination="aAD-ma-8oD" id="OR9-xh-9zl"/>
+                        <outlet property="toggleSigninButton" destination="cB1-fT-M12" id="aC0-a9-sIw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VC9-wI-eDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1340" y="311"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DqY-eU-wDL">
+            <objects>
+                <viewController id="YJf-Hx-hsj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cZt-Bz-m8o">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="202"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="28e-yj-RSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="311"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btn-help" width="22" height="22"/>
+        <image name="icon-wp" width="50" height="52"/>
+    </resources>
+</document>

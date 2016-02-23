@@ -510,19 +510,34 @@ int ddLogLevel                                                  = DDLogLevelInfo
     }
 }
 
+- (void)showSigninScreen
+{
+    UIViewController *controller = controller = [SigninViewController controller];
+
+    UINavigationController *navigationController = [[RotationAwareNavigationViewController alloc] initWithRootViewController:controller];
+    navigationController.navigationBar.translucent = NO;
+
+    [self.window.rootViewController presentViewController:navigationController animated:true completion:nil];
+}
+
 - (void)showWelcomeScreenAnimated:(BOOL)animated thenEditor:(BOOL)thenEditor
 {
+    if ([Feature enabled:FeatureFlagSignin]) {
+        [self showSigninScreen];
+        return;
+    }
+
     BOOL hasWordpressAccountButNoSelfHostedBlogs = [self noSelfHostedBlogs] && ![self noWordPressDotComAccount];
-    
+
     __weak __typeof(self) weakSelf = self;
-    
+
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     loginViewController.showEditorAfterAddingSites = thenEditor;
     loginViewController.cancellable = hasWordpressAccountButNoSelfHostedBlogs;
     loginViewController.dismissBlock = ^(BOOL cancelled){
-        
+
         __strong __typeof(weakSelf) strongSelf = self;
-        
+
         [strongSelf.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
     };
 
