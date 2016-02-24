@@ -1,7 +1,7 @@
 #import "WPWalkthroughTextField.h"
+#import "WPNUXUtility.h"
 
 @interface WPWalkthroughTextField ()
-@property (nonatomic, strong) UIImage *leftViewImage;
 @property (nonatomic, strong) UIButton *secureTextEntryToggle;
 @property (nonatomic, strong) UIImage *secureTextEntryImageVisible;
 @property (nonatomic, strong) UIImage *secureTextEntryImageHidden;
@@ -13,21 +13,7 @@
 {
     self = [super init];
     if (self) {
-        self.textInsets = UIEdgeInsetsMake(7, 10, 7, 10);
-        self.layer.cornerRadius = 1.0;
-        self.clipsToBounds = YES;
-        self.showTopLineSeparator = NO;
-        self.showSecureTextEntryToggle = NO;
-
-        self.secureTextEntryImageVisible = [UIImage imageNamed:@"icon-secure-text-visible"];
-        self.secureTextEntryImageHidden = [UIImage imageNamed:@"icon-secure-text"];
-
-        self.secureTextEntryToggle = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.secureTextEntryToggle.frame = CGRectMake(0, 0, 40, 30);
-        [self.secureTextEntryToggle addTarget:self action:@selector(secureTextEntryToggleAction:) forControlEvents:UIControlEventTouchUpInside];
-
-        [self addSubview:self.secureTextEntryToggle];
-        [self updateSecureTextEntryToggleImage];
+        [self commonInit];
     }
     return self;
 }
@@ -37,10 +23,55 @@
     self = [self init];
     if (self) {
         self.leftViewImage = image;
-        self.leftView = [[UIImageView alloc] initWithImage:image];
-        self.leftViewMode = UITextFieldViewModeAlways;
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)setLeftViewImage:(UIImage *)leftViewImage
+{
+    if (leftViewImage) {
+        _leftViewImage = leftViewImage;
+    
+        self.leftView = [[UIImageView alloc] initWithImage:leftViewImage];
+        self.leftViewMode = UITextFieldViewModeAlways;
+    } else {
+        self.leftView = nil;
+    }
+}
+
+- (void)commonInit
+{
+    self.textInsets = UIEdgeInsetsMake(7, 10, 7, 10);
+    self.layer.cornerRadius = 1.0;
+    self.clipsToBounds = YES;
+    self.showTopLineSeparator = NO;
+    self.showSecureTextEntryToggle = NO;
+    
+    self.font = [WPNUXUtility textFieldFont];
+    
+    self.secureTextEntryImageVisible = [UIImage imageNamed:@"icon-secure-text-visible"];
+    self.secureTextEntryImageHidden = [UIImage imageNamed:@"icon-secure-text"];
+    
+    self.secureTextEntryToggle = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.secureTextEntryToggle.frame = CGRectMake(0, 0, 40, 30);
+    [self.secureTextEntryToggle addTarget:self action:@selector(secureTextEntryToggleAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:self.secureTextEntryToggle];
+    [self updateSecureTextEntryToggleImage];
+}
+
+- (CGSize)intrinsicContentSize
+{
+    return CGSizeMake(0, 44);
 }
 
 - (void)drawRect:(CGRect)rect
@@ -111,7 +142,6 @@
 // left view position
 - (CGRect)leftViewRectForBounds:(CGRect)bounds
 {
-
     if (_leftViewImage) {
         return CGRectIntegral(CGRectMake(_textInsets.left, (CGRectGetHeight(bounds) - _leftViewImage.size.height) / 2.0, _leftViewImage.size.width, _leftViewImage.size.height));
     }
