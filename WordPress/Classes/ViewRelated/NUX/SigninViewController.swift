@@ -1,5 +1,6 @@
 import UIKit
 
+typealias SigninCallbackBlock = () -> Void
 
 class SigninViewController : UIViewController
 {
@@ -9,6 +10,7 @@ class SigninViewController : UIViewController
     @IBOutlet var icon: UIImageView!
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
+
 
     class func controller() -> SigninViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
@@ -35,19 +37,114 @@ class SigninViewController : UIViewController
     }
 
 
+    // MARK: - Instance Methods
 
-    func showSigninEmailViewController() {
-        let controller = SigninEmailViewController.controller()
+    func presentChildViewController(controller: UIViewController) {
+        let oldChildViewController = childViewControllers.first
+        oldChildViewController?.willMoveToParentViewController(nil)
 
         addChildViewController(controller)
-        let childView = controller.view
-        containerView.addSubview(childView)
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.pinSubviewToAllEdges(childView)
-        controller.didMoveToParentViewController(self)
+        containerView.addSubview(controller.view)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.pinSubviewToAllEdges(controller.view)
+
+        if oldChildViewController == nil {
+            controller.didMoveToParentViewController(self)
+            return
+        }
+        controller.view.alpha = 0
+        controller.view.layoutIfNeeded()
+
+        UIView.animateWithDuration(0.5,
+            animations: {
+                controller.view.alpha = 1
+                oldChildViewController?.view.alpha = 0
+            },
+            completion: { finished in
+                oldChildViewController?.view.removeFromSuperview()
+                oldChildViewController?.removeFromParentViewController()
+                controller.didMoveToParentViewController(self)
+        })
+
     }
 
 
+    // MARK: - Controller Factories
 
+
+    func showSigninEmailViewController() {
+        let controller = SigninEmailViewController.controller({ email in
+            self.validateEmail(email)
+        })
+
+        presentChildViewController(controller)
+    }
+
+
+    func showSigninMagicLinkViewController() {
+        let controller = SigninMagicLinkViewController.controller({
+                self.requestLink()
+            },
+            signinWithPasswordBlock: {
+                self.signinWithPassword()
+        })
+
+        presentChildViewController(controller)
+    }
+
+
+    func showOpenMailViewController() {
+        let controller = SigninOpenMailViewController.controller({
+                self.openMail()
+            },
+            skipBlock: {
+                self.signinWithPassword()
+        })
+
+        presentChildViewController(controller)
+    }
+
+
+    // MARK: - Child Controller Callbacks
+
+
+    func validateEmail(email: String) {
+        showSigninMagicLinkViewController()
+    }
+
+
+    func signinWithPassword() {
+        NSLog("Show password form")
+    }
+
+
+    func requestLink() {
+        showOpenMailViewController()
+    }
+
+
+    func openMail() {
+        let url = NSURL(string: "message://")!
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+
+
+    // MARK: - Actions
+
+    @IBAction func handleCreateAccountTapped(sender: UIButton) {
+
+    }
+
+
+    @IBAction func handleToggleSigninTapped(sender: UIButton) {
+
+    }
+
+
+    @IBAction func handleHelpTapped(sender: UIButton) {
+
+    }
 
 }
