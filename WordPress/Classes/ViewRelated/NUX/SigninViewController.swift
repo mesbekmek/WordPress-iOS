@@ -10,7 +10,6 @@ class SigninViewController : UIViewController
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
 
-
     class func controller() -> SigninViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninViewController") as! SigninViewController
@@ -18,10 +17,17 @@ class SigninViewController : UIViewController
         return controller
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad();
         navigationController?.navigationBarHidden = true
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let child = segue.destinationViewController
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+    }
 }
