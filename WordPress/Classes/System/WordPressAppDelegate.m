@@ -517,7 +517,7 @@ int ddLogLevel                                                  = DDLogLevelInfo
     UINavigationController *navigationController = [[RotationAwareNavigationViewController alloc] initWithRootViewController:controller];
     navigationController.navigationBar.translucent = NO;
 
-    [self.window.rootViewController presentViewController:navigationController animated:true completion:nil];
+    [self.window.rootViewController presentViewController:navigationController animated:false completion:nil];
 }
 
 - (void)showWelcomeScreenAnimated:(BOOL)animated thenEditor:(BOOL)thenEditor
