@@ -61,7 +61,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vLP-Cr-5QN">
+                            <containerView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vLP-Cr-5QN">
                                 <rect key="frame" x="0.0" y="199" width="600" height="202"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="202" placeholder="YES" id="c3z-X0-R5F"/>
@@ -123,6 +123,10 @@
         <scene sceneID="DqY-eU-wDL">
             <objects>
                 <viewController id="YJf-Hx-hsj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SIa-JD-1td"/>
+                        <viewControllerLayoutGuide type="bottom" id="0nm-E8-tdP"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cZt-Bz-m8o">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="202"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,6 +136,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="28e-yj-RSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2097" y="311"/>
+        </scene>
+        <!--Signin Email View Controller-->
+        <scene sceneID="QJl-u1-lA5">
+            <objects>
+                <viewController storyboardIdentifier="SigninEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BxT-kY-85j" customClass="SigninEmailViewController" customModule="WordPress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yCC-dv-0Ab"/>
+                        <viewControllerLayoutGuide type="bottom" id="DCn-4A-iHj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" id="TLo-n9-12X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nzK-YI-3Og">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Hp-LGi">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7">
+                                        <rect key="frame" x="0.0" y="45" width="320" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="kMP-5U-xLe"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nzK-YI-3Og" secondAttribute="trailing" id="E4W-3R-JSa"/>
+                            <constraint firstItem="nzK-YI-3Og" firstAttribute="leading" secondItem="TLo-n9-12X" secondAttribute="leading" id="JHS-VY-Pvc"/>
+                            <constraint firstItem="nzK-YI-3Og" firstAttribute="top" secondItem="yCC-dv-0Ab" secondAttribute="bottom" id="b53-XN-UHC"/>
+                            <constraint firstItem="DCn-4A-iHj" firstAttribute="top" secondItem="nzK-YI-3Og" secondAttribute="bottom" id="yTq-sX-jru"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="75"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Kya-Hp-LGi" id="2WI-Ab-7th"/>
+                        <outlet property="submitButton" destination="1D2-6S-8E7" id="72q-S9-KZs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u7p-aT-8Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957" y="526.5"/>
         </scene>
     </scenes>
     <resources>

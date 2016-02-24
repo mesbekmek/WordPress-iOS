@@ -20,14 +20,34 @@ class SigninViewController : UIViewController
     override func viewDidLoad() {
         super.viewDidLoad();
         navigationController?.navigationBarHidden = true
+
+        showSigninEmailViewController()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
 
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let child = segue.destinationViewController
         child.view.translatesAutoresizingMaskIntoConstraints = false
     }
+
+
+
+    func showSigninEmailViewController() {
+        let controller = SigninEmailViewController.controller()
+
+        addChildViewController(controller)
+        let childView = controller.view
+        containerView.addSubview(childView)
+        childView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.pinSubviewToAllEdges(childView)
+        controller.didMoveToParentViewController(self)
+    }
+
+
+
+
 }
