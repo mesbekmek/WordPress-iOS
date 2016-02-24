@@ -128,6 +128,11 @@ NSString * const WPAccountEmailAndDefaultBlogUpdatedNotification = @"WPAccountEm
 
 }
 
+- (void)findExistingAccountByEmail:(NSString *)email success:(void (^)())success failure:(void (^)(NSError *error))failure
+{
+    success();
+}
+
 ///-----------------------
 /// @name Account creation
 ///-----------------------
