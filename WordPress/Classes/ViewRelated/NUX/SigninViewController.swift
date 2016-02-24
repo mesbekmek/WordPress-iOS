@@ -125,9 +125,7 @@ class SigninViewController : UIViewController
 
     func openMail() {
         let url = NSURL(string: "message://")!
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
-        }
+        UIApplication.sharedApplication().openURL(url)
     }
 
 
