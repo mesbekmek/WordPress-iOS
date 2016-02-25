@@ -73,32 +73,29 @@ class SigninViewController : UIViewController
 
 
     func showSigninEmailViewController() {
-        let controller = SigninEmailViewController.controller({ email in
-            self.validateEmail(email)
+        let controller = SigninEmailViewController.controller({ [weak self] email in
+            self?.didValidateEmail(email)
         })
 
         presentChildViewController(controller)
     }
 
 
-    func showSigninMagicLinkViewController() {
-        let controller = SigninMagicLinkViewController.controller({
-                self.requestLink()
-            },
-            signinWithPasswordBlock: {
-                self.signinWithPassword()
-        })
+    func showSigninMagicLinkViewController(email: String) {
+        let controller = SigninMagicLinkViewController.controller(email,
+            requestLinkBlock: {  [weak self] in
+                self?.didRequestAuthenticationLink(email)
+            }, signinWithPasswordBlock: { [weak self] in
+                self?.signinWithPassword()
+            })
 
         presentChildViewController(controller)
     }
 
 
-    func showOpenMailViewController() {
-        let controller = SigninOpenMailViewController.controller({
-                self.openMail()
-            },
-            skipBlock: {
-                self.signinWithPassword()
+    func showOpenMailViewController(email: String) {
+        let controller = SigninOpenMailViewController.controller(email, skipBlock: {[weak self] in
+                self?.signinWithPassword()
         })
 
         presentChildViewController(controller)
@@ -108,8 +105,13 @@ class SigninViewController : UIViewController
     // MARK: - Child Controller Callbacks
 
 
-    func validateEmail(email: String) {
-        showSigninMagicLinkViewController()
+    func didValidateEmail(email: String) {
+        showSigninMagicLinkViewController(email)
+    }
+
+
+    func didRequestAuthenticationLink(email: String) {
+        showOpenMailViewController(email)
     }
 
 
@@ -118,31 +120,20 @@ class SigninViewController : UIViewController
     }
 
 
-    func requestLink() {
-        showOpenMailViewController()
-    }
-
-
-    func openMail() {
-        let url = NSURL(string: "message://")!
-        UIApplication.sharedApplication().openURL(url)
-    }
-
-
     // MARK: - Actions
 
     @IBAction func handleCreateAccountTapped(sender: UIButton) {
-
+        NSLog("Tapped")
     }
 
 
     @IBAction func handleToggleSigninTapped(sender: UIButton) {
-
+        NSLog("Tapped")
     }
 
 
     @IBAction func handleHelpTapped(sender: UIButton) {
-
+        NSLog("Tapped")
     }
 
 }

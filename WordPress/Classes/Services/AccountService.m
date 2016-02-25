@@ -133,6 +133,13 @@ NSString * const WPAccountEmailAndDefaultBlogUpdatedNotification = @"WPAccountEm
     success();
 }
 
+
+- (void)requestAuthenticationLink:(NSString *)email success:(void (^)())success failure:(void (^)(NSError *error))failure
+{
+    success();
+}
+
+
 ///-----------------------
 /// @name Account creation
 ///-----------------------

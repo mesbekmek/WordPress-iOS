@@ -165,6 +165,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BxT-kY-85j" id="SIg-Bb-UbZ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7">
                                         <rect key="frame" x="0.0" y="45" width="320" height="30"/>
@@ -216,9 +219,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-JX-VGI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email me a link" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zh-cg-RmP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkJ-nc-tWO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
-                                        <state key="normal" title="Send Link">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="35"/>
+                                        <state key="normal" title="Email Link">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -227,7 +236,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egu-Kx-qNn">
                                         <rect key="frame" x="0.0" y="70" width="320" height="30"/>
-                                        <state key="normal" title="Use Password">
+                                        <state key="normal" title="Use Password Instead">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -250,6 +259,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="100"/>
                     <connections>
+                        <outlet property="label" destination="9Zh-cg-RmP" id="xVk-Gr-l8L"/>
                         <outlet property="requestLinkButton" destination="lkJ-nc-tWO" id="sIN-zn-OEe"/>
                         <outlet property="usePasswordButton" destination="egu-Kx-qNn" id="VXk-4i-NHU"/>
                     </connections>

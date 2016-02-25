@@ -2,7 +2,7 @@ import UIKit
 
 typealias SigninValidateEmailBlock = (String) -> Void
 
-class SigninEmailViewController : UIViewController
+class SigninEmailViewController : UIViewController, UITextFieldDelegate
 {
 
     var validateEmailCallback: SigninValidateEmailBlock?
@@ -26,9 +26,30 @@ class SigninEmailViewController : UIViewController
 
 
     @IBAction func handleSubmitTapped(sender: UIButton) {
-        if let email = emailTextField.text {
+        if let email = emailTextField.text  {
             validateEmailCallback?(email)
         }
+    }
+
+
+    // MARK: -
+
+
+    func checkEmailAddress(email: String) {
+        emailTextField.enabled = false
+        let service = AccountService(managedObjectContext: ContextManager.sharedInstance().mainContext)
+        service.findExistingAccountByEmail(email,
+            success: { [weak self] in
+                self?.didValidateEmail(email)
+            }, failure: { [weak self] (error: NSError!) in
+                DDLogSwift.logError(error.localizedDescription)
+                self?.emailTextField.enabled = true
+        })
+    }
+
+
+    func didValidateEmail(email: String) {
+        validateEmailCallback?(email)
     }
 
 }
