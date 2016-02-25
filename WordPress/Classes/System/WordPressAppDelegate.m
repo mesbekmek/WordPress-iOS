@@ -186,6 +186,8 @@ int ddLogLevel                                                  = DDLogLevelInfo
 
         if ([URLString rangeOfString:@"newpost"].length) {
             returnValue = [self handleNewPostRequestWithURL:url];
+        } else if ([URLString rangeOfString:@"auth"].length) {
+            returnValue = [self handleOpenWithAuthenticationURL:url];
         } else if ([URLString rangeOfString:@"viewpost"].length) {
             // View the post specified by the shared blog ID and post ID
             NSDictionary *params = [[url query] dictionaryFromQueryString];
@@ -438,11 +440,12 @@ int ddLogLevel                                                  = DDLogLevelInfo
     // if already logged in, do nothing.
     AccountService *service = [[AccountService alloc] initWithManagedObjectContext:[[ContextManager sharedInstance] mainContext]];
     if (service.defaultWordPressComAccount) {
+        DDLogInfo(@"App opened with authentication link but there is already an existing wpcom account. %@", service.defaultWordPressComAccount);
         return YES;
     }
 
-
-
+    // Show the signin view controller configured to perform the auth request.
+    [self showSigninScreen:params animated:NO thenEditor:NO];
     
     return YES;
 }
@@ -532,9 +535,54 @@ int ddLogLevel                                                  = DDLogLevelInfo
     }
 }
 
-- (void)showSigninScreen
+
+- (void)showSigninScreenIfNeededAnimated:(BOOL)animated
 {
-    UIViewController *controller = controller = [SigninViewController controller];
+    if (self.isWelcomeScreenVisible || !([self noSelfHostedBlogs] && [self noWordPressDotComAccount])) {
+        return;
+    }
+
+    UIViewController *presenter = self.window.rootViewController;
+    // Check if the presentedVC is UIAlertController because in iPad we show a Sign-out button in UIActionSheet
+    // and it's not dismissed before the check and `dismissViewControllerAnimated` does not work for it
+    if (presenter.presentedViewController && ![presenter.presentedViewController isKindOfClass:[UIAlertController class]]) {
+        [presenter dismissViewControllerAnimated:animated completion:^{
+            [self showSigninScreenAnimated:animated thenEditor:NO];
+        }];
+    } else {
+        [self showSigninScreenAnimated:animated thenEditor:NO];
+    }
+}
+
+- (void)showSigninScreenAnimated:(BOOL)animated thenEditor:(BOOL)thenEditor
+{
+    [self showSigninScreen:nil animated:animated thenEditor:thenEditor];
+}
+
+- (void)showSigninScreen:(NSDictionary *)params animated:(BOOL)animated thenEditor:(BOOL)thenEditor
+{
+    if ([self isWelcomeScreenVisible] && params) {
+        NSString *token = [params objectForKey:@"token"];
+        UINavigationController *presentedViewController = (UINavigationController *)self.window.rootViewController.presentedViewController;
+        SigninViewController *controller = (SigninViewController *)presentedViewController.visibleViewController;
+        [controller authenticateWithToken:token];
+
+        return;
+    }
+
+    SigninViewController *controller = controller = [SigninViewController controller:params];
+//    controller.showEditorAfterAddingSites = thenEditor;
+//    controller.cancellable = hasWordpressAccountButNoSelfHostedBlogs;
+//    controller.dismissBlock = ^(BOOL cancelled){
+//
+//        __strong __typeof(weakSelf) strongSelf = self;
+//
+//        [strongSelf.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+//    };
+    if (params) {
+        NSString *token = [params objectForKey:@"token"];
+        [controller authenticateWithToken:token];
+    }
 
     UINavigationController *navigationController = [[RotationAwareNavigationViewController alloc] initWithRootViewController:controller];
     navigationController.navigationBar.translucent = NO;
@@ -545,7 +593,7 @@ int ddLogLevel                                                  = DDLogLevelInfo
 - (void)showWelcomeScreenAnimated:(BOOL)animated thenEditor:(BOOL)thenEditor
 {
     if ([Feature enabled:FeatureFlagSignin]) {
-        [self showSigninScreen];
+        [self showSigninScreenAnimated:animated thenEditor:thenEditor];
         return;
     }
 
@@ -576,7 +624,7 @@ int ddLogLevel                                                  = DDLogLevelInfo
         return NO;
     }
     
-    return [presentedViewController.visibleViewController isKindOfClass:[LoginViewController class]];
+    return [presentedViewController.visibleViewController isKindOfClass:[LoginViewController class]] || [presentedViewController.visibleViewController isKindOfClass:[SigninViewController class]];
 }
 
 - (BOOL)noWordPressDotComAccount

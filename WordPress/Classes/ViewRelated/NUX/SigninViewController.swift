@@ -10,13 +10,14 @@ class SigninViewController : UIViewController
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
 
+    let AuthenticationEmailKey = "AuthenticationEmailKey"
     var childViewControllerStack = [UIViewController]()
     
     private var currentChildViewController: UIViewController? {
         return childViewControllerStack.last
     }
     
-    class func controller() -> SigninViewController {
+    class func controller(params: NSDictionary) -> SigninViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninViewController") as! SigninViewController
 
@@ -59,6 +60,21 @@ class SigninViewController : UIViewController
         child.view.translatesAutoresizingMaskIntoConstraints = false
     }
 
+
+    // MARK: - Instance Methods
+
+
+    func authenticateWithToken(token: String) {
+        // retrieve email from nsdefaults
+        guard let email = NSUserDefaults.standardUserDefaults().stringForKey(AuthenticationEmailKey) else {
+            showSigninEmailViewController()
+            return
+        }
+
+        showAuthenticationController(email, token: token)
+    }
+
+
     // MARK: - Controller Factories
 
 
@@ -84,10 +100,26 @@ class SigninViewController : UIViewController
 
 
     func showOpenMailViewController(email: String) {
+        // Save email in nsuserdefaults and retrieve it if necessary
+        NSUserDefaults.standardUserDefaults().setObject(email, forKey: AuthenticationEmailKey)
+
         let controller = SigninOpenMailViewController.controller(email, skipBlock: {[weak self] in
-                self?.signinWithPassword()
+            self?.signinWithPassword()
         })
 
+        pushChildViewController(controller, animated: true)
+    }
+
+
+    func showAuthenticationController(email: String, token: String) {
+        let controller = SigninAuthenticationTokenViewController.controller(email,
+            token: token,
+            successCallback: { [weak self] in
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            },
+            failureCallback: {
+                // TODO: handle auth failure callback
+        })
         pushChildViewController(controller, animated: true)
     }
 

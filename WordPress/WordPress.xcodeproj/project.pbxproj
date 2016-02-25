@@ -632,6 +632,7 @@
 		E65219FB1B8D10DA000B1217 /* ReaderBlockedSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65219FA1B8D10DA000B1217 /* ReaderBlockedSiteCell.swift */; };
 		E6535C2B1C7E301D002FD140 /* SigninMagicLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6535C2A1C7E301D002FD140 /* SigninMagicLinkViewController.swift */; };
 		E6535C2D1C7E38F5002FD140 /* SigninOpenMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6535C2C1C7E38F5002FD140 /* SigninOpenMailViewController.swift */; };
+		E6535C4D1C7EBD80002FD140 /* SigninAuthenticationTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6535C4C1C7EBD80002FD140 /* SigninAuthenticationTokenViewController.swift */; };
 		E663D1901C65383E0017F109 /* SharingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E663D18F1C65383E0017F109 /* SharingAccountViewController.swift */; };
 		E66969C81B9E0A6800EC9C00 /* ReaderTopicServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66969C71B9E0A6800EC9C00 /* ReaderTopicServiceTest.swift */; };
 		E66969CA1B9E0C4F00EC9C00 /* ReaderTopicServiceRemoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E66969C91B9E0C4F00EC9C00 /* ReaderTopicServiceRemoteTests.m */; };
@@ -1784,6 +1785,7 @@
 		E65219FA1B8D10DA000B1217 /* ReaderBlockedSiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderBlockedSiteCell.swift; sourceTree = "<group>"; };
 		E6535C2A1C7E301D002FD140 /* SigninMagicLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninMagicLinkViewController.swift; sourceTree = "<group>"; };
 		E6535C2C1C7E38F5002FD140 /* SigninOpenMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninOpenMailViewController.swift; sourceTree = "<group>"; };
+		E6535C4C1C7EBD80002FD140 /* SigninAuthenticationTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninAuthenticationTokenViewController.swift; sourceTree = "<group>"; };
 		E663D18F1C65383E0017F109 /* SharingAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingAccountViewController.swift; sourceTree = "<group>"; };
 		E66969C71B9E0A6800EC9C00 /* ReaderTopicServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTopicServiceTest.swift; sourceTree = "<group>"; };
 		E66969C91B9E0C4F00EC9C00 /* ReaderTopicServiceRemoteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderTopicServiceRemoteTests.m; sourceTree = "<group>"; };
@@ -2743,6 +2745,7 @@
 				E6BA1C491C7D2FDF0057595B /* SigninEmailViewController.swift */,
 				E6535C2A1C7E301D002FD140 /* SigninMagicLinkViewController.swift */,
 				E6535C2C1C7E38F5002FD140 /* SigninOpenMailViewController.swift */,
+				E6535C4C1C7EBD80002FD140 /* SigninAuthenticationTokenViewController.swift */,
 				E6BA1C451C7D00940057595B /* Signin.storyboard */,
 				17E52FC61C7CFBFA00A41E19 /* SignInSelfHosted.storyboard */,
 				17750B2C1C7D3A3F00B11425 /* SignIn2FAViewController.swift */,
@@ -5033,6 +5036,7 @@
 				BEBFE8721B2F50E0002C04EF /* WPSearchControllerConfigurator.m in Sources */,
 				FACB36F11C5C2BF800C6DF4E /* ThemeWebViewController.swift in Sources */,
 				5D42A3E0175E7452005CFF05 /* BasePost.m in Sources */,
+				E6535C4D1C7EBD80002FD140 /* SigninAuthenticationTokenViewController.swift in Sources */,
 				5D000DE11AC0879600A7BAF9 /* PostCardActionBarItem.m in Sources */,
 				E1249B4319408C910035E895 /* RemoteComment.m in Sources */,
 				E663D1901C65383E0017F109 /* SharingAccountViewController.swift in Sources */,

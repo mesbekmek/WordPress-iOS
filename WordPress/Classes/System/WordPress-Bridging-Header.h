@@ -72,6 +72,8 @@
 
 #import "WordPressAppDelegate.h"
 #import "WordPressComApi.h"
+#import "WordPressComApiCredentials.h"
+#import "WordPressComOAuthClient.h"
 #import "WPAccount.h"
 #import "WPActivityDefaults.h"
 #import "WPAnimatedBox.h"
