@@ -39,6 +39,14 @@ extension UIView
         addConstraints(newConstraints)
     }
     
+    public func pinSubview(subview: UIView, toAttributes attributes: [NSLayoutAttribute]) {
+        let newConstraints = attributes.map { attribute in
+            NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .Equal, toItem: subview, attribute: attribute, multiplier: 1.0, constant: 0)
+        }
+        
+        addConstraints(newConstraints)
+    }
+    
     public func constraintForAttribute(attribute: NSLayoutAttribute) -> CGFloat? {
         for constraint in constraints {
             if constraint.firstItem as! NSObject == self {
