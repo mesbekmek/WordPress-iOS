@@ -82,6 +82,7 @@
 #import "WPGUIConstants.h"
 #import "WPImageViewController.h"
 #import "WPNoResultsView+AnimatedBox.h"
+#import "WPNUXSecondaryButton.h"
 #import "WPRichTextView.h"
 #import "WPStyleGuide+ReadableMargins.h"
 #import "WPTableViewHandler.h"

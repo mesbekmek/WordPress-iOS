@@ -13,62 +13,142 @@
                         <viewControllerLayoutGuide type="bottom" id="kpx-4a-g9f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sse-Og-J7H">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="132"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="188"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-4C-xy4">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="132"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eK5-Cg-uWT">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="188"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username / Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZg-CV-XkC" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="Username / Email"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-username-field"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNd-HR-WPZ" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="44" width="300" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showTopLineSeparator" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-password-field"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Site Address (URL)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYe-55-wlY" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="88" width="300" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showTopLineSeparator" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-url-field"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-4C-xy4">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="132"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username / Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZg-CV-XkC" customClass="WPWalkthroughTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Username / Email"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-username-field"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNd-HR-WPZ" customClass="WPWalkthroughTextField">
+                                                <rect key="frame" x="0.0" y="44" width="300" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showTopLineSeparator" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-password-field"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Site Address (URL)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYe-55-wlY" customClass="WPWalkthroughTextField">
+                                                <rect key="frame" x="0.0" y="88" width="300" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showTopLineSeparator" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-url-field"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prk-hW-xXC" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="147" width="300" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="FEc-vS-lZ8"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Site"/>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="SignInVC"/>
                         <constraints>
-                            <constraint firstItem="PcP-4C-xy4" firstAttribute="top" secondItem="CeM-3M-utQ" secondAttribute="bottom" id="1x0-bW-LOb"/>
-                            <constraint firstAttribute="trailing" secondItem="PcP-4C-xy4" secondAttribute="trailing" id="Cmx-4Q-oge"/>
-                            <constraint firstItem="kpx-4a-g9f" firstAttribute="top" secondItem="PcP-4C-xy4" secondAttribute="bottom" id="qzx-sp-g6a"/>
-                            <constraint firstItem="PcP-4C-xy4" firstAttribute="leading" secondItem="Sse-Og-J7H" secondAttribute="leading" id="ro1-wE-vpI"/>
+                            <constraint firstItem="eK5-Cg-uWT" firstAttribute="leading" secondItem="Sse-Og-J7H" secondAttribute="leading" id="8t5-04-iDv"/>
+                            <constraint firstAttribute="trailing" secondItem="eK5-Cg-uWT" secondAttribute="trailing" id="B2j-Dy-6Jv"/>
+                            <constraint firstItem="eK5-Cg-uWT" firstAttribute="top" secondItem="CeM-3M-utQ" secondAttribute="bottom" id="E1Q-Yo-nHJ"/>
+                            <constraint firstItem="kpx-4a-g9f" firstAttribute="top" secondItem="eK5-Cg-uWT" secondAttribute="bottom" id="TVk-oD-8R9"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="132"/>
+                    <size key="freeformSize" width="300" height="188"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ju-ZG-9Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="435" y="349"/>
+            <point key="canvasLocation" x="398" y="316"/>
+        </scene>
+        <!--Sign In2FA View Controller-->
+        <scene sceneID="5ma-EC-zVh">
+            <objects>
+                <viewController storyboardIdentifier="SignIn2FAViewController" id="hwa-PJ-1Ql" customClass="SignIn2FAViewController" customModule="WordPress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fNs-yY-kww"/>
+                        <viewControllerLayoutGuide type="bottom" id="USq-Ke-qak"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fgc-sV-aag">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="188"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TC3-oY-Mhh">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="188"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eeL-04-703">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Verification Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TkY-zs-sgu" customClass="WPWalkthroughTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Verification Code"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Ii5-Pf-HMY"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDy-66-mSB" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="59" width="300" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="xAL-ll-YSn"/>
+                                        </constraints>
+                                        <state key="normal" title="Verify"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naN-mh-xeQ" customClass="WPNUXSecondaryButton">
+                                        <rect key="frame" x="0.0" y="115" width="300" height="73"/>
+                                        <state key="normal" title="send code"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="2FAVC"/>
+                        <constraints>
+                            <constraint firstItem="TC3-oY-Mhh" firstAttribute="leading" secondItem="fgc-sV-aag" secondAttribute="leading" id="SqK-Ta-Q8e"/>
+                            <constraint firstItem="TC3-oY-Mhh" firstAttribute="top" secondItem="fNs-yY-kww" secondAttribute="bottom" id="Yev-Kx-TjE"/>
+                            <constraint firstAttribute="trailing" secondItem="TC3-oY-Mhh" secondAttribute="trailing" id="qln-lV-6ap"/>
+                            <constraint firstItem="USq-Ke-qak" firstAttribute="top" secondItem="TC3-oY-Mhh" secondAttribute="bottom" id="zOi-He-4II"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="188"/>
+                    <connections>
+                        <outlet property="sendCodebutton" destination="naN-mh-xeQ" id="3UB-Fl-YGT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NWd-Bf-GwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="780" y="316"/>
         </scene>
     </scenes>
     <resources>
