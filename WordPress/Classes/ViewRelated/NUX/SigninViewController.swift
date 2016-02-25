@@ -84,7 +84,10 @@ class SigninViewController : UIViewController
     
     func showSelfHostedSignInViewController(email: String) {
         let controller = SigninSelfHostedViewController.controller(email)
-
+        controller.signInSuccessBlock = { [weak self] in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
         pushChildViewController(controller, animated: true)
     }
 

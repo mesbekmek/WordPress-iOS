@@ -82,6 +82,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="188"/>
                     <connections>
+                        <outlet property="addSiteButton" destination="prk-hW-xXC" id="M39-X0-23d"/>
                         <outlet property="emailField" destination="mZg-CV-XkC" id="mjH-dZ-wY0"/>
                         <outlet property="passwordField" destination="XNd-HR-WPZ" id="pwF-fg-WYd"/>
                         <outlet property="siteURLField" destination="ZYe-55-wlY" id="Gtl-8r-vxc"/>
