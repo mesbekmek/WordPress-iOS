@@ -9,7 +9,7 @@ class SigninViewController : UIViewController
     @IBOutlet var icon: UIImageView!
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
-
+    
     var childViewControllerStack = [UIViewController]()
     
     private var currentChildViewController: UIViewController? {
@@ -61,12 +61,11 @@ class SigninViewController : UIViewController
 
     // MARK: - Controller Factories
 
-
     func showSigninEmailViewController() {
         let controller = SigninEmailViewController.controller({ [weak self] email in
-            self?.didValidateEmail(email)
+            self?.emailValidationSuccessCallback(email)
             }, failure: { [weak self] email in
-            self?.didFailEmailValidation(email)
+            self?.emailValidationFailureCallback(email)
         })
 
         pushChildViewController(controller, animated: false)
@@ -101,11 +100,11 @@ class SigninViewController : UIViewController
     // MARK: - Child Controller Callbacks
 
 
-    func didValidateEmail(email: String) {
+    func emailValidationSuccess(email: String) {
         showSigninMagicLinkViewController(email)
     }
 
-    func didFailEmailValidation(email: String) {
+    func emailValidationFailure(email: String) {
         showSelfHostedSignInViewController(email)
     }
     

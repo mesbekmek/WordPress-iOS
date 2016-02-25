@@ -14,6 +14,10 @@ static NSString * const UserDictionaryPrimaryBlogKey = @"primary_blog";
 static NSString * const UserDictionaryAvatarURLKey = @"avatar_URL";
 static NSString * const UserDictionaryDateKey = @"date";
 
+@interface AccountServiceRemoteREST ()
+@property (nonatomic, strong) WordPressComApi *anonymousApi;
+@end
+
 @implementation AccountServiceRemoteREST
 
 - (void)getBlogsWithSuccess:(void (^)(NSArray *))success
@@ -104,6 +108,33 @@ static NSString * const UserDictionaryDateKey = @"date";
         parameters:parameters
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                if (success) {
+                   success();
+               }
+           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+               if (failure) {
+                   failure(error);
+               }
+           }];
+}
+
+- (WordPressComApi *)anonymousApi
+{
+    if (!_anonymousApi) {
+        _anonymousApi = [WordPressComApi anonymousApi];
+    }
+    
+    return _anonymousApi;
+}
+
+- (void)findExistingAccountByEmail:(NSString *)email  success:(void (^)())success failure:(void (^)(NSError *error))failure
+{
+    NSString *path = [self pathForEndpoint:@"is-available/email"
+                               withVersion:ServiceRemoteRESTApiVersion_1_1];
+    [self.api GET:path
+       parameters:@{ @"q": email }
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               if (success) {
+                   NSLog(@"response: %@", responseObject);
                    success();
                }
            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
