@@ -41,7 +41,7 @@ class SigninAuthenticationTokenViewController: UIViewController
         label.text = "Signing in as \(email)"
 
         activityIndicator.startAnimating()
-return
+
         let authClient = WordPressComOAuthClient()
         authClient.authenticateWithUsername(email,
             password: token,

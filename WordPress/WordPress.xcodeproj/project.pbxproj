@@ -47,6 +47,7 @@
 		1724DDCC1C6121D00099D273 /* Plans.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1724DDCB1C6121D00099D273 /* Plans.storyboard */; };
 		176579F71C63A40F0000978E /* PurchaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176579F61C63A40F0000978E /* PurchaseButton.swift */; };
 		17750B2D1C7D3A3F00B11425 /* SignIn2FAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17750B2C1C7D3A3F00B11425 /* SignIn2FAViewController.swift */; };
+		17750B2F1C7E969400B11425 /* SigninSelfHostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17750B2E1C7E969400B11425 /* SigninSelfHostedViewController.swift */; };
 		17AF92251C46634000A99CFB /* BlogSiteVisibilityHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AF92241C46634000A99CFB /* BlogSiteVisibilityHelperTest.m */; };
 		17C1BA0E1C68D63C0017F38C /* PlanDetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1BA0D1C68D63C0017F38C /* PlanDetailViewControllerTest.swift */; };
 		17D2FDC21C6A468A00944265 /* PlanComparisonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2FDC11C6A468A00944265 /* PlanComparisonViewController.swift */; };
@@ -824,6 +825,7 @@
 		1724DDCB1C6121D00099D273 /* Plans.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Plans.storyboard; sourceTree = "<group>"; };
 		176579F61C63A40F0000978E /* PurchaseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseButton.swift; sourceTree = "<group>"; };
 		17750B2C1C7D3A3F00B11425 /* SignIn2FAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn2FAViewController.swift; sourceTree = "<group>"; };
+		17750B2E1C7E969400B11425 /* SigninSelfHostedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninSelfHostedViewController.swift; sourceTree = "<group>"; };
 		17AF92241C46634000A99CFB /* BlogSiteVisibilityHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogSiteVisibilityHelperTest.m; sourceTree = "<group>"; };
 		17C1BA0D1C68D63C0017F38C /* PlanDetailViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewControllerTest.swift; sourceTree = "<group>"; };
 		17D2FDC11C6A468A00944265 /* PlanComparisonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanComparisonViewController.swift; sourceTree = "<group>"; };
@@ -2749,6 +2751,7 @@
 				E6BA1C451C7D00940057595B /* Signin.storyboard */,
 				17E52FC61C7CFBFA00A41E19 /* SignInSelfHosted.storyboard */,
 				17750B2C1C7D3A3F00B11425 /* SignIn2FAViewController.swift */,
+				17750B2E1C7E969400B11425 /* SigninSelfHostedViewController.swift */,
 			);
 			path = NUX;
 			sourceTree = "<group>";
@@ -4795,6 +4798,7 @@
 				B532D4EB199D4357006E4DF6 /* NoteBlockTableViewCell.swift in Sources */,
 				E6BA1C441C7D00730057595B /* SigninViewController.swift in Sources */,
 				E6D2E1671B8AAD8C0000ED14 /* ReaderTagStreamHeader.swift in Sources */,
+				17750B2F1C7E969400B11425 /* SigninSelfHostedViewController.swift in Sources */,
 				85D239B61AE5A6170074768D /* ReachabilityFacade.m in Sources */,
 				B5899ADE1B419C560075A3D6 /* NotificationSettingDetailsViewController.swift in Sources */,
 				FAE4201A1C5AEFE100C1D036 /* StartOverViewController.swift in Sources */,

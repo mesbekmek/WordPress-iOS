@@ -5,10 +5,12 @@
 #import <NSObject_SafeExpectations/NSDictionary+SafeExpectations.h>
 
 #import "AccountService.h"
+#import "AccountServiceRemoteREST.h"
 #import "AppRatingUtility.h"
 
 #import "Blog.h"
 #import "BlogService.h"
+#import "BlogSyncFacade.h"
 #import "CommentService.h"
 
 #import "Constants.h"
@@ -19,6 +21,8 @@
 
 #import "HelpshiftUtils.h"
 
+#import "LoginFacade.h"
+#import "LoginFields.h"
 #import "LoginViewController.h"
 
 #import "MediaService.h"
@@ -84,6 +88,7 @@
 #import "WPGUIConstants.h"
 #import "WPImageViewController.h"
 #import "WPNoResultsView+AnimatedBox.h"
+#import "WPNUXMainButton.h"
 #import "WPNUXSecondaryButton.h"
 #import "WPRichTextView.h"
 #import "WPStyleGuide+ReadableMargins.h"
