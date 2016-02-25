@@ -133,41 +133,6 @@
             </objects>
             <point key="canvasLocation" x="2124" y="-119"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="DqY-eU-wDL">
-            <objects>
-                <viewController id="YJf-Hx-hsj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xd9-0Y-zXX"/>
-                        <viewControllerLayoutGuide type="bottom" id="YxK-P6-TbE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cZt-Bz-m8o">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Kf-8z-ywh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="202"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Child"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="202" id="gEd-ol-q88"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <accessibility key="accessibilityConfiguration" identifier="childVCView"/>
-                        <constraints>
-                            <constraint firstItem="9Kf-8z-ywh" firstAttribute="top" secondItem="xd9-0Y-zXX" secondAttribute="bottom" id="0Fn-D1-BN4"/>
-                            <constraint firstAttribute="trailing" secondItem="9Kf-8z-ywh" secondAttribute="trailing" id="6uc-vz-CY6"/>
-                            <constraint firstItem="9Kf-8z-ywh" firstAttribute="leading" secondItem="cZt-Bz-m8o" secondAttribute="leading" id="Qad-ks-RCs"/>
-                            <constraint firstItem="YxK-P6-TbE" firstAttribute="top" secondItem="9Kf-8z-ywh" secondAttribute="bottom" id="bjQ-hs-SFU"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="28e-yj-RSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2097" y="311"/>
-        </scene>
         <!--Signin Email View Controller-->
         <scene sceneID="QJl-u1-lA5">
             <objects>
@@ -177,14 +142,14 @@
                         <viewControllerLayoutGuide type="bottom" id="DCn-4A-iHj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" id="TLo-n9-12X">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nzK-YI-3Og">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nzK-YI-3Og">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Hp-LGi" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Hp-LGi" customClass="WPWalkthroughTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                         <userDefinedRuntimeAttributes>
@@ -194,8 +159,11 @@
                                             <outlet property="delegate" destination="BxT-kY-85j" id="SIg-Bb-UbZ"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7">
-                                        <rect key="frame" x="0.0" y="45" width="320" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="59" width="320" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="P2r-VX-ZRE"/>
+                                        </constraints>
                                         <state key="normal" title="Next">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -204,9 +172,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="kMP-5U-xLe"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -219,7 +184,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="75"/>
+                    <size key="freeformSize" width="320" height="100"/>
                     <connections>
                         <outlet property="emailTextField" destination="Kya-Hp-LGi" id="2WI-Ab-7th"/>
                         <outlet property="submitButton" destination="1D2-6S-8E7" id="72q-S9-KZs"/>
@@ -244,7 +209,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-JX-VGI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email me a link" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zh-cg-RmP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email me a link" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zh-cg-RmP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -38,7 +38,7 @@ class SigninViewController : UIViewController
             if childViewControllerStack.count % 2 != 0 {
                 return "SignIn2FAViewController"
             } else {
-                return "SignInSelfHostedViewController"
+                return "SigninSelfHostedViewController"
             }
         }
         let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
@@ -65,11 +65,12 @@ class SigninViewController : UIViewController
     func showSigninEmailViewController() {
         let controller = SigninEmailViewController.controller({ [weak self] email in
             self?.didValidateEmail(email)
+            }, failure: { [weak self] email in
+            self?.didFailEmailValidation(email)
         })
 
         pushChildViewController(controller, animated: false)
     }
-
 
     func showSigninMagicLinkViewController(email: String) {
         let controller = SigninMagicLinkViewController.controller(email,
@@ -81,7 +82,12 @@ class SigninViewController : UIViewController
 
         pushChildViewController(controller, animated: true)
     }
+    
+    func showSelfHostedSignInViewController(email: String) {
+        let controller = SigninSelfHostedViewController.controller(email)
 
+        pushChildViewController(controller, animated: true)
+    }
 
     func showOpenMailViewController(email: String) {
         let controller = SigninOpenMailViewController.controller(email, skipBlock: {[weak self] in
@@ -99,7 +105,10 @@ class SigninViewController : UIViewController
         showSigninMagicLinkViewController(email)
     }
 
-
+    func didFailEmailValidation(email: String) {
+        showSelfHostedSignInViewController(email)
+    }
+    
     func didRequestAuthenticationLink(email: String) {
         showOpenMailViewController(email)
     }
@@ -178,8 +187,17 @@ class SigninViewController : UIViewController
     private func animateFromViewController(fromViewController: UIViewController?, toViewController: UIViewController, direction: AnimationDirection, completion: (() -> Void)?) {
         isAnimating = true
         
+        // switch out the fromViewController with a snapshot
+        let snapshot = fromViewController?.view.snapshotViewAfterScreenUpdates(false)
+
+        if let snapshot = snapshot {
+            containerView.addSubview(snapshot)
+            containerView.pinSubview(snapshot, toAttributes: [.Top, .Leading, .Width])
+            fromViewController?.view.removeFromSuperview()
+        }
+        
         containerView.pinSubview(toViewController.view, toAttributes: [.Top, .Bottom, .Width])
-        containerView.layoutIfNeeded()
+        toViewController.view.layoutIfNeeded()
         containerView.pinSubview(toViewController.view, toAttributes: [.Leading])
         
         func translateXForDirection(direction: AnimationDirection) -> CGFloat {
@@ -199,9 +217,10 @@ class SigninViewController : UIViewController
             self.view.layoutIfNeeded()
             toViewController.view.transform = CGAffineTransformIdentity
             
-            fromViewController?.view.transform = CGAffineTransformMakeTranslation(-translateX, 0)
+            snapshot?.transform = CGAffineTransformMakeTranslation(-translateX, 0)
         }, completion: { _ in
             UIView.animateWithDuration(0.3, animations: {
+                snapshot?.removeFromSuperview()
                 self.removeViewController(fromViewController)
                 self.view.layoutIfNeeded()
                 }, completion: { _ in

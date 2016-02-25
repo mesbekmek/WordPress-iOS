@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Signin Self Hosted View Controller-->
         <scene sceneID="Ij4-9S-8Je">
             <objects>
-                <viewController storyboardIdentifier="SignInSelfHostedViewController" id="Yjw-hC-rwy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SigninSelfHostedViewController" id="Yjw-hC-rwy" customClass="SigninSelfHostedViewController" customModule="WordPress" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CeM-3M-utQ"/>
                         <viewControllerLayoutGuide type="bottom" id="kpx-4a-g9f"/>
@@ -62,6 +62,9 @@
                                             <constraint firstAttribute="height" constant="41" id="FEc-vS-lZ8"/>
                                         </constraints>
                                         <state key="normal" title="Add Site"/>
+                                        <connections>
+                                            <action selector="addSiteTapped" destination="Yjw-hC-rwy" eventType="touchUpInside" id="O3e-M1-GOR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -78,6 +81,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="188"/>
+                    <connections>
+                        <outlet property="emailField" destination="mZg-CV-XkC" id="mjH-dZ-wY0"/>
+                        <outlet property="passwordField" destination="XNd-HR-WPZ" id="pwF-fg-WYd"/>
+                        <outlet property="siteURLField" destination="ZYe-55-wlY" id="Gtl-8r-vxc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ju-ZG-9Aj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

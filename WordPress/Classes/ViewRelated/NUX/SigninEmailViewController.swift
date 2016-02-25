@@ -6,18 +6,19 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
 {
 
     var validateEmailCallback: SigninValidateEmailBlock?
-
+    var didFailEmailValidationCallback: SigninValidateEmailBlock?
 
     @IBOutlet var emailTextField:UITextField!
     @IBOutlet var submitButton:UIButton!
 
 
-    class func controller(callback: SigninValidateEmailBlock) -> SigninEmailViewController {
+    class func controller(callback: SigninValidateEmailBlock, failure: SigninValidateEmailBlock) -> SigninEmailViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninEmailViewController") as! SigninEmailViewController
 
         controller.validateEmailCallback = callback
-
+        controller.didFailEmailValidationCallback = failure
+        
         return controller
     }
 
@@ -44,12 +45,17 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
             }, failure: { [weak self] (error: NSError!) in
                 DDLogSwift.logError(error.localizedDescription)
                 self?.emailTextField.enabled = true
+                self?.didFailEmailValidation(email)
         })
     }
 
 
     func didValidateEmail(email: String) {
         validateEmailCallback?(email)
+    }
+    
+    func didFailEmailValidation(email: String) {
+        didFailEmailValidationCallback?(email)
     }
 
 }
