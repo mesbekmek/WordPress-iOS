@@ -426,6 +426,28 @@ int ddLogLevel                                                  = DDLogLevelInfo
 #pragma mark - OpenURL helpers
 
 /**
+
+ */
+- (BOOL)handleOpenWithAuthenticationURL:(NSURL *)url
+{
+    NSParameterAssert([url isKindOfClass:[NSURL class]]);
+
+    NSDictionary *params = [[url query] dictionaryFromQueryString];
+    DDLogInfo(@"App launched with authentication link %@", params);
+
+    // if already logged in, do nothing.
+    AccountService *service = [[AccountService alloc] initWithManagedObjectContext:[[ContextManager sharedInstance] mainContext]];
+    if (service.defaultWordPressComAccount) {
+        return YES;
+    }
+
+
+
+    
+    return YES;
+}
+
+/**
  *  @brief      Handle the a new post request by URL.
  *  
  *  @param      url     The URL with the request info.  Cannot be nil.
