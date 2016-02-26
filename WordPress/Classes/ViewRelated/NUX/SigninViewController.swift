@@ -159,9 +159,15 @@ class SigninViewController : UIViewController
 
 
     @IBAction func handleHelpTapped(sender: UIButton) {
-        NSLog("Tapped")
+        let controller = SupportViewController()
+        let navController = UINavigationController(rootViewController: controller)
+        navController.navigationBar.translucent = false
+        navController.modalPresentationStyle = .FormSheet
+
+        navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
-    
+
+
     private var isAnimating = false
     
     func pushChildViewController(viewController: UIViewController, animated: Bool) {
