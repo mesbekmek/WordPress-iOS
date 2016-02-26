@@ -9,6 +9,8 @@ enum FeatureFlag: Int {
     case Sharing
     /// My Sites > Site > Plans
     case Plans
+    /// My Sites > Site > Domains
+    case Domains
     /// Returns a boolean indicating if the feature is enabled
     var enabled: Bool {
         switch self {
@@ -17,6 +19,8 @@ enum FeatureFlag: Int {
         case .Sharing:
             return build(.Debug)
         case .Plans:
+            return build(.Debug)
+        case .Domains:
             return build(.Debug)
         }
     }
