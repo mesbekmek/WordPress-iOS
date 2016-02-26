@@ -25,31 +25,14 @@ class SigninViewController : UIViewController
         return controller
     }
 
+
+    // MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad();
         navigationController?.navigationBarHidden = true
 
         showSigninEmailViewController()
-        
-        createAccountButton.addTarget(self, action: "buttonTapped", forControlEvents: .TouchUpInside)
-        toggleSigninButton.addTarget(self, action: "otherButtonTapped", forControlEvents: .TouchUpInside)
-    }
-    
-    func buttonTapped() {
-        func nextVCName() -> String {
-            if childViewControllerStack.count % 2 != 0 {
-                return "SignIn2FAViewController"
-            } else {
-                return "SigninSelfHostedViewController"
-            }
-        }
-        let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
-        let vc = storyboard.instantiateViewControllerWithIdentifier(nextVCName())
-        pushChildViewController(vc, animated: true)
-    }
-    
-    func otherButtonTapped() {
-        popChildViewController(true)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -157,12 +140,21 @@ class SigninViewController : UIViewController
     // MARK: - Actions
 
     @IBAction func handleCreateAccountTapped(sender: UIButton) {
-        NSLog("Tapped")
+        func nextVCName() -> String {
+            if childViewControllerStack.count % 2 != 0 {
+                return "SignIn2FAViewController"
+            } else {
+                return "SigninSelfHostedViewController"
+            }
+        }
+        let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
+        let vc = storyboard.instantiateViewControllerWithIdentifier(nextVCName())
+        pushChildViewController(vc, animated: true)
     }
 
 
     @IBAction func handleToggleSigninTapped(sender: UIButton) {
-        NSLog("Tapped")
+        popChildViewController(true)
     }
 
 

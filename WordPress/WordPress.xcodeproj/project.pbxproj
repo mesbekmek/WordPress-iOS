@@ -2721,14 +2721,11 @@
 		850D22B21729EE8600EC6A16 /* NUX */ = {
 			isa = PBXGroup;
 			children = (
+				E6CEACCB1C7FC28100CF559C /* deprecated */,
 				85D239B71AE5A6620074768D /* LoginFields.h */,
 				85D239B81AE5A6620074768D /* LoginFields.m */,
 				85D239B91AE5A6620074768D /* LoginViewModel.h */,
 				85D239BA1AE5A6620074768D /* LoginViewModel.m */,
-				85EC44D21739826A00686604 /* CreateAccountAndBlogViewController.h */,
-				85EC44D31739826A00686604 /* CreateAccountAndBlogViewController.m */,
-				858DE40D1730384F000AC628 /* LoginViewController.h */,
-				858DE40E1730384F000AC628 /* LoginViewController.m */,
 				85B6F7501742DAE800CE7F3A /* WPNUXBackButton.h */,
 				85B6F7511742DAE800CE7F3A /* WPNUXBackButton.m */,
 				85B6F74D1742DA1D00CE7F3A /* WPNUXMainButton.h */,
@@ -3991,6 +3988,17 @@
 				E6B9B8AE1B94FA1C0001B92F /* ReaderStreamViewControllerTests.swift */,
 			);
 			name = Reader;
+			sourceTree = "<group>";
+		};
+		E6CEACCB1C7FC28100CF559C /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				858DE40D1730384F000AC628 /* LoginViewController.h */,
+				858DE40E1730384F000AC628 /* LoginViewController.m */,
+				85EC44D21739826A00686604 /* CreateAccountAndBlogViewController.h */,
+				85EC44D31739826A00686604 /* CreateAccountAndBlogViewController.m */,
+			);
+			name = deprecated;
 			sourceTree = "<group>";
 		};
 		E6D2E16A1B8B41AC0000ED14 /* Headers */ = {
