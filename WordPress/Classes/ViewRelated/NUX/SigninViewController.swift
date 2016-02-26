@@ -183,7 +183,12 @@ class SigninViewController : UIViewController
     
     func popChildViewController(animated: Bool) {
         if isAnimating { return }
-        
+
+        // Keep at least one child vc. 
+        guard childViewControllerStack.count > 1 else {
+            return
+        }
+
         guard let currentChild =  childViewControllerStack.popLast() else { return }
         
         if !animated {
