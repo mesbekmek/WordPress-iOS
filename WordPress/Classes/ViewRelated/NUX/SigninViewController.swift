@@ -168,6 +168,13 @@ class SigninViewController : UIViewController
     }
 
 
+    @IBAction func handleBackgroundViewTapGesture(tgr: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
+    // MARK: - Child Controller Wrangling
+
+
     private var isAnimating = false
     
     func pushChildViewController(viewController: UIViewController, animated: Bool) {

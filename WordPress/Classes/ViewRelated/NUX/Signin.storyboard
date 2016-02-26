@@ -4,23 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="Ezx-Kr-dOq">
-            <objects>
-                <navigationController navigationBarHidden="YES" id="qAY-ge-0cZ" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YmC-aK-Yl3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Tao-m9-FwL" kind="relationship" relationship="rootViewController" id="gDA-wb-VdC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HSg-e7-HFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="631" y="311"/>
-        </scene>
         <!--Signin View Controller-->
         <scene sceneID="qY6-J5-fEW">
             <objects>
@@ -89,6 +72,7 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52941176470588236" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lYS-s4-06N" secondAttribute="trailing" constant="16" id="628-Zn-Ng2"/>
                             <constraint firstItem="cB1-fT-M12" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="AW2-f9-fHP"/>
@@ -109,6 +93,9 @@
                                 <exclude reference="GeC-7f-XNa"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="VDh-Hl-ob2" appends="YES" id="52w-UR-riA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="uLX-3k-DSx"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -122,6 +109,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC9-wI-eDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VDh-Hl-ob2">
+                    <connections>
+                        <action selector="handleBackgroundViewTapGesture:" destination="Tao-m9-FwL" id="kqQ-nC-bo7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1340" y="311"/>
         </scene>
