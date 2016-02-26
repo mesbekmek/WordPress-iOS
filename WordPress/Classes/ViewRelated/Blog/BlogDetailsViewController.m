@@ -332,6 +332,16 @@ NSInteger const BlogDetailAccountHideViewAdminDay = 7;
                                                      }]];
     }
 
+    if ([Feature enabled:FeatureFlagDomains] && [self.blog supports:BlogFeatureSiteManagement]) {
+        BlogDetailsRow *row = [[BlogDetailsRow alloc] initWithTitle:NSLocalizedString(@"Domains", @"Noun. Title. Links to a blog's Domains screen.")
+                                                              image:[UIImage imageNamed:@"icon-menu-domains"]
+                                                           callback:^{
+                                                               [weakSelf showDomains];
+                                                           }];
+        
+        [rows addObject:row];
+    }
+
     [rows addObject:[[BlogDetailsRow alloc] initWithTitle:NSLocalizedString(@"Settings", @"Noun. Title. Links to the blog's Settings screen.")
                                                     image:[UIImage imageNamed:@"icon-menu-settings"]
                                                  callback:^{
@@ -478,6 +488,14 @@ NSInteger const BlogDetailAccountHideViewAdminDay = 7;
     [WPAppAnalytics track:WPAnalyticsStatOpenedComments withBlog:self.blog];
     CommentsViewController *controller = [[CommentsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     controller.blog = self.blog;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)showDomains
+{
+    NSParameterAssert([self.blog supportsSiteManagementServices]);
+
+    DomainsViewController *controller = [[DomainsViewController alloc] initWithBlog:self.blog];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
