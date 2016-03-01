@@ -377,27 +377,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-FV-U8D">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signing in " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-6L-FVt">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nNG-eI-hku">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="20"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nNG-eI-hku">
+                                <rect key="frame" x="150" y="0.0" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signing in " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-6L-FVt">
+                                <rect key="frame" x="16" y="28" width="288" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="jqd-FV-U8D" firstAttribute="top" secondItem="7D5-mt-6B6" secondAttribute="bottom" id="36q-eO-UNR"/>
-                            <constraint firstItem="gdV-2Q-kVo" firstAttribute="top" secondItem="jqd-FV-U8D" secondAttribute="bottom" id="Nnw-c5-gLU"/>
-                            <constraint firstAttribute="trailing" secondItem="jqd-FV-U8D" secondAttribute="trailing" id="TSG-6j-iKJ"/>
-                            <constraint firstItem="jqd-FV-U8D" firstAttribute="leading" secondItem="w3Z-Q1-CG8" secondAttribute="leading" id="oFW-Mu-7vq"/>
+                            <constraint firstItem="nNG-eI-hku" firstAttribute="top" secondItem="7D5-mt-6B6" secondAttribute="bottom" id="Mba-NC-mvG"/>
+                            <constraint firstItem="gdV-2Q-kVo" firstAttribute="top" secondItem="LvT-6L-FVt" secondAttribute="bottom" id="YnY-aM-8LX"/>
+                            <constraint firstItem="LvT-6L-FVt" firstAttribute="leading" secondItem="w3Z-Q1-CG8" secondAttribute="leading" constant="16" id="ZsR-MN-9pi"/>
+                            <constraint firstItem="LvT-6L-FVt" firstAttribute="top" secondItem="nNG-eI-hku" secondAttribute="bottom" constant="8" id="ffS-Dk-lNJ"/>
+                            <constraint firstItem="nNG-eI-hku" firstAttribute="centerX" secondItem="w3Z-Q1-CG8" secondAttribute="centerX" id="qH9-zp-FeP"/>
+                            <constraint firstAttribute="trailing" secondItem="LvT-6L-FVt" secondAttribute="trailing" constant="16" id="xeY-dY-UFM"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
