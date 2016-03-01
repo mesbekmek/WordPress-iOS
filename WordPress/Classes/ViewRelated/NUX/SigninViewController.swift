@@ -2,6 +2,10 @@ import UIKit
 
 typealias SigninCallbackBlock = () -> Void
 
+/// This is the starting point for signing into the app. The SigninViewController acts
+/// as the parent view control, loading and displaying child view controllers that
+/// hanadle each step in the signin flow.
+///
 class SigninViewController : UIViewController
 {
     @IBOutlet var containerView: UIView!
@@ -10,6 +14,8 @@ class SigninViewController : UIViewController
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
 
+    // This key is used with NSUserDefaults to persist an email address while the
+    // app is suspended and the mail app is launched.
     let AuthenticationEmailKey = "AuthenticationEmailKey"
 
     var childViewControllerStack = [UIViewController]()
@@ -17,7 +23,11 @@ class SigninViewController : UIViewController
     private var currentChildViewController: UIViewController? {
         return childViewControllerStack.last
     }
-    
+
+
+    /// A convenience method for instanciating an instance of the controller from
+    /// the storyboard.
+    ///
     class func controller(params: NSDictionary) -> SigninViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninViewController") as! SigninViewController
@@ -39,15 +49,15 @@ class SigninViewController : UIViewController
         return .LightContent
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let child = segue.destinationViewController
-        child.view.translatesAutoresizingMaskIntoConstraints = false
-    }
-
 
     // MARK: - Instance Methods
 
 
+    /// Call this method passing a one-time token to sign in to wpcom.
+    ///
+    /// - Parameters:
+    ///     - token: A one time authentication token that is used in lieu of a password.
+    ///
     func authenticateWithToken(token: String) {
         // retrieve email from nsdefaults
         guard let email = NSUserDefaults.standardUserDefaults().stringForKey(AuthenticationEmailKey) else {
@@ -61,37 +71,62 @@ class SigninViewController : UIViewController
 
     // MARK: - Controller Factories
 
+
+    /// Shows the email form.  This is the first step
+    /// in the signin flow.
+    ///
     func showSigninEmailViewController() {
         let controller = SigninEmailViewController.controller({ [weak self] email in
-            self?.emailValidationSuccess(email)
-            }, failure: { [weak self] email in
-            self?.emailValidationSuccess(email)
-        })
+                self?.emailValidationSuccess(email)
+            },
+            failure: { [weak self] email in
+                self?.emailValidationSuccess(email)
+            })
 
         pushChildViewController(controller, animated: false)
     }
-    
+
+
+    /// Shows the password form.
+    ///
+    /// - Parameters:
+    ///     - email: The user's email address.
+    ///
     func showSigninPasswordViewController(email: String) {
         let controller = SigninPasswordViewController.controller(email, success: { [weak self] in
                 self?.dismissViewControllerAnimated(true, completion: nil)
-            }, failure: { (error) -> Void in
+            },
+            failure: { (error) -> Void in
                 print("Error: \(error)")
             })
         
         pushChildViewController(controller, animated: false)
     }
 
+
+    /// Shows the "email link" form.
+    ///
+    /// - Parameters:
+    ///     - email: The user's email address.
+    ///
     func showSigninMagicLinkViewController(email: String) {
         let controller = SigninMagicLinkViewController.controller(email,
             requestLinkBlock: {  [weak self] in
                 self?.didRequestAuthenticationLink(email)
-            }, signinWithPasswordBlock: { [weak self] in
+            },
+            signinWithPasswordBlock: { [weak self] in
                 self?.signinWithPassword(email)
             })
 
         pushChildViewController(controller, animated: true)
     }
-    
+
+
+    /// Shows the self hosted form which includes, username/email, password and url fields.
+    ///
+    /// - Parameters:
+    ///     - email: The user's email address.
+    ///
     func showSelfHostedSignInViewController(email: String) {
         let controller = SigninSelfHostedViewController.controller(email)
         controller.signInSuccessBlock = { [weak self] in
@@ -101,6 +136,12 @@ class SigninViewController : UIViewController
         pushChildViewController(controller, animated: true)
     }
 
+
+    /// Shows the "open mail" form.
+    ///
+    /// - Parameters:
+    ///     - email: The user's email address.
+    ///
     func showOpenMailViewController(email: String) {
         // Save email in nsuserdefaults and retrieve it if necessary
         NSUserDefaults.standardUserDefaults().setObject(email, forKey: AuthenticationEmailKey)
@@ -113,6 +154,13 @@ class SigninViewController : UIViewController
     }
 
 
+    /// Shows the "magic link" authentication form. This is basically a progress
+    /// indicator while signin in the user.
+    ///
+    /// - Parameters:
+    ///     - email: The user's email address.
+    ///     - token: A one time authentication token that is used in lieu of a password.
+    ///
     func showAuthenticationController(email: String, token: String) {
         let controller = SigninAuthenticationTokenViewController.controller(email,
             token: token,
@@ -180,6 +228,7 @@ class SigninViewController : UIViewController
     @IBAction func handleBackgroundViewTapGesture(tgr: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+
 
     // MARK: - Child Controller Wrangling
 
