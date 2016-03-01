@@ -56,7 +56,6 @@ class SigninSelfHostedViewController: UIViewController {
 }
 
 extension SigninSelfHostedViewController: LoginFacadeDelegate {
-    // self hosted login finished
     func finishedLoginWithUsername(username: String!, password: String!, xmlrpc: String!, options: [NSObject : AnyObject]!) {
         blogSyncFacade.syncBlogWithUsername(username, password: password, xmlrpc: xmlrpc, options: options) {
             self.addSiteButton.showActivityIndicator(true)
@@ -80,6 +79,4 @@ extension SigninSelfHostedViewController: LoginFacadeDelegate {
     func needsMultifactorCode() {
         
     }
-    
-    
 }

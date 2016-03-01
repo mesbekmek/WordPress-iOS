@@ -5,6 +5,7 @@
 #import <NSObject_SafeExpectations/NSDictionary+SafeExpectations.h>
 
 #import "AccountService.h"
+#import "AccountServiceFacade.h"
 #import "AccountServiceRemoteREST.h"
 #import "AppRatingUtility.h"
 

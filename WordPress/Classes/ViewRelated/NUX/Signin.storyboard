@@ -117,14 +117,6 @@
             </objects>
             <point key="canvasLocation" x="1340" y="311"/>
         </scene>
-        <!--SignIn2FAViewController-->
-        <scene sceneID="qhq-ga-caf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SignInSelfHosted" referencedIdentifier="SignIn2FAViewController" id="mQC-Rc-WKz" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5tb-fM-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2124" y="-119"/>
-        </scene>
         <!--Signin Email View Controller-->
         <scene sceneID="QJl-u1-lA5">
             <objects>
@@ -185,6 +177,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7p-aT-8Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2006" y="48.5"/>
+        </scene>
+        <!--Signin Password View Controller-->
+        <scene sceneID="oim-lI-MzE">
+            <objects>
+                <viewController storyboardIdentifier="SigninPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UGr-pL-EXH" customClass="SigninPasswordViewController" customModule="WordPress" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tmu-Iu-EsB"/>
+                        <viewControllerLayoutGuide type="bottom" id="GcZ-ah-Rzh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" id="PXy-nH-mUO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LlC-dz-VFT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cGt-DX-Cgl" customClass="WPWalkthroughTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-password-field"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="UGr-pL-EXH" id="huP-XK-s0G"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rps-5X-mSQ" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="59" width="320" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="22f-0A-9ca"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signInButtonTapped" destination="UGr-pL-EXH" eventType="touchUpInside" id="OVw-Aw-vsP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LlC-dz-VFT" firstAttribute="leading" secondItem="PXy-nH-mUO" secondAttribute="leading" id="5g4-Jx-YPn"/>
+                            <constraint firstAttribute="trailing" secondItem="LlC-dz-VFT" secondAttribute="trailing" id="TTQ-hY-DMK"/>
+                            <constraint firstItem="GcZ-ah-Rzh" firstAttribute="top" secondItem="LlC-dz-VFT" secondAttribute="bottom" id="d7k-Wp-ZLE"/>
+                            <constraint firstItem="LlC-dz-VFT" firstAttribute="top" secondItem="Tmu-Iu-EsB" secondAttribute="bottom" id="rP9-3G-aLH"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="100"/>
+                    <connections>
+                        <outlet property="passwordField" destination="cGt-DX-Cgl" id="yUB-53-Zyo"/>
+                        <outlet property="signInButton" destination="Rps-5X-mSQ" id="si4-mG-auQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RxN-t6-Qqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2379" y="48"/>
         </scene>
         <!--Signin Magic Link View Controller-->
         <scene sceneID="JIo-h7-mCP">
@@ -357,6 +411,7 @@
     </scenes>
     <resources>
         <image name="btn-help" width="22" height="22"/>
+        <image name="icon-password-field" width="18" height="22"/>
         <image name="icon-username-field" width="18" height="18"/>
         <image name="icon-wp" width="50" height="52"/>
     </resources>

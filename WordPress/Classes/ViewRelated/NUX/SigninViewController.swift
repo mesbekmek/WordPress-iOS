@@ -65,9 +65,19 @@ class SigninViewController : UIViewController
         let controller = SigninEmailViewController.controller({ [weak self] email in
             self?.emailValidationSuccess(email)
             }, failure: { [weak self] email in
-            self?.emailValidationFailure(email)
+            self?.emailValidationSuccess(email)
         })
 
+        pushChildViewController(controller, animated: false)
+    }
+    
+    func showSigninPasswordViewController(email: String) {
+        let controller = SigninPasswordViewController.controller(email, success: { [weak self] in
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            }, failure: { (error) -> Void in
+                print("Error: \(error)")
+            })
+        
         pushChildViewController(controller, animated: false)
     }
 
@@ -76,7 +86,7 @@ class SigninViewController : UIViewController
             requestLinkBlock: {  [weak self] in
                 self?.didRequestAuthenticationLink(email)
             }, signinWithPasswordBlock: { [weak self] in
-                self?.signinWithPassword()
+                self?.signinWithPassword(email)
             })
 
         pushChildViewController(controller, animated: true)
@@ -96,7 +106,7 @@ class SigninViewController : UIViewController
         NSUserDefaults.standardUserDefaults().setObject(email, forKey: AuthenticationEmailKey)
 
         let controller = SigninOpenMailViewController.controller(email, skipBlock: {[weak self] in
-            self?.signinWithPassword()
+            self?.signinWithPassword(email)
         })
 
         pushChildViewController(controller, animated: true)
@@ -131,9 +141,8 @@ class SigninViewController : UIViewController
         showOpenMailViewController(email)
     }
 
-
-    func signinWithPassword() {
-        NSLog("Show password form")
+    func signinWithPassword(email: String) {
+        showSigninPasswordViewController(email)
     }
 
 
