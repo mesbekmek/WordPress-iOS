@@ -33,47 +33,113 @@ class SigninAuthenticationTokenViewController: UIViewController
     }
 
 
+    // MARK: - Instance Methods
+
+
+    /// Makes the call to authenticate the user with the one-time token.
+    ///
     func performAuth() {
         guard let token = token, email = email else {
+            // TODO: This is a falure condition that needs to be handled.
+            authFailedCallback?()
             return
         }
 
-        label.text = "Signing in as \(email)"
+        let format = NSLocalizedString("Signing in to WordPress.com as %@", comment: "Status message shown to the user. The %@ symbol is a placeholder for their email address.")
+        label.text = NSString(format: format, email) as String
 
         activityIndicator.startAnimating()
 
-        let authClient = WordPressComOAuthClient()
-        authClient.authenticateWithUsername(email,
+        let loginFields = LoginFields(username: email,
             password: token,
+            siteUrl: nil,
             multifactorCode: nil,
-            success: { [weak self] (authToken: String!) in
-                self?.didReceiveOAuthToken(authToken)
-            },
-            failure: { [weak self] (error: NSError!) in
-                DDLogSwift.logError(error.description)
-                self?.failedToReceiveOAuthToken()
-            })
+            userIsDotCom: true,
+            shouldDisplayMultiFactor: false)
+
+        let facade = LoginFacade()
+        facade.delegate = self
+        facade.signInWithLoginFields(loginFields)
     }
 
 
-    func didReceiveOAuthToken(oauthToken: String) {
-        let service = AccountService(managedObjectContext: ContextManager.sharedInstance().mainContext)
-        let account = service.createOrUpdateAccountWithUsername(email!, authToken: oauthToken)
-
-        service.updateUserDetailsForAccount(account,
+    /// Once an auth token is acquired, call this method to update account information.
+    ///
+    /// - Parameters:
+    ///     - username: The username or email address used to sign in.
+    ///     - authToken: The user's bearer token to the wpcom REST API.
+    ///
+    func didReceiveOAuthToken(username: String, authToken: String) {
+        label.text = NSLocalizedString("Getting account information", comment:"")
+        let facade = AccountServiceFacade()
+        let account = facade.createOrUpdateWordPressComAccountWithUsername(username, authToken: authToken)
+        facade.updateUserDetailsForAccount(account,
             success: { [weak self] in
-                // Finally done
-                self?.authSuccessCallback?()
+                self?.syncBlogsForAccount(account)
             },
-            failure: { (error: NSError!) in
-                // TODO:
+            failure: { [weak self] (error: NSError!) in
+                // TODO: The account was created successfully but there was a
+                // problem updating. Since the user is logged in at this point
+                // log the error and end the login flow successfully
+                self?.authSuccessCallback?()
         })
     }
 
 
-    func failedToReceiveOAuthToken() {
+    /// Once account information is updated, call this method to sync blogs.
+    ///
+    /// - Parameters:
+    ///     - account: The account for which to sync blogs.
+    ///
+    func syncBlogsForAccount(account: WPAccount) {
+        label.text = NSLocalizedString("Syncing blogs", comment:"")
+
+        let blogFacade = BlogSyncFacade()
+        blogFacade.syncBlogsForAccount(account,
+            success: { [weak self] in
+                self?.authSuccessCallback?()
+            },
+            failure: { [weak self] (error: NSError!) in
+                // TODO: The account was created successfully but there was a
+                // problem updating. Since the user is logged in at this point
+                // log the error and end the login flow successfully.
+                self?.authSuccessCallback?()
+        })
+    }
+
+}
+
+
+extension SigninAuthenticationTokenViewController : LoginFacadeDelegate
+{
+    func displayLoginMessage(message: String) {
 
     }
 
 
+    func displayRemoteError(error: NSError) {
+        // TODO: Need to handle errors when getting the oauth token from the facade.
+    }
+
+
+    func finishedLoginWithUsername(username: String!, authToken: String!, requiredMultifactorCode: Bool) {
+        didReceiveOAuthToken(username, authToken: authToken)
+    }
+
+
+    func finishedLoginWithUsername(username: String!, password: String!, xmlrpc: String!, options: [NSObject : AnyObject]!) {
+        // Unused as this controller only supports wpcom logins.
+    }
+
+
+    func needsMultifactorCode() {
+        // Unused as the magic link flow does not present the 2fa
+    }
+}
+
+extension SigninAuthenticationTokenViewController : SigninChildViewController
+{
+    func backButtonEnabled() -> Bool {
+        return false
+    }
 }

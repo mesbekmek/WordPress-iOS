@@ -2,7 +2,6 @@ import UIKit
 
 class SigninOpenMailViewController: UIViewController
 {
-
     @IBOutlet var openMailButton: UIButton!
     @IBOutlet var skipButton: UIButton!
 
@@ -34,4 +33,11 @@ class SigninOpenMailViewController: UIViewController
         skipCallback?()
     }
     
+}
+
+extension SigninOpenMailViewController : SigninChildViewController
+{
+    func backButtonEnabled() -> Bool {
+        return true
+    }
 }
