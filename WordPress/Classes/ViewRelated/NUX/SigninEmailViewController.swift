@@ -33,7 +33,11 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
     // MARK: -
 
     func checkEmailAddress(email: String) {
+        // TODO: Need some basic validation
+
         emailTextField.enabled = false
+
+        // TODO: Need to show a busy spinner while doing hte look up.
         let service = AccountService(managedObjectContext: ContextManager.sharedInstance().mainContext)
         service.findExistingAccountByEmail(email,
             success: { [weak self] in
@@ -43,5 +47,11 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
                 self?.emailTextField.enabled = true
                 self?.emailValidationFailureCallback?(email)
         })
+    }
+}
+
+extension SigninEmailViewController : SigninChildViewController {
+    func backButtonEnabled() -> Bool {
+        return true
     }
 }

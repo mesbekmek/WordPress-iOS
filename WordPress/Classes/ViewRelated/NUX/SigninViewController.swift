@@ -5,11 +5,14 @@ typealias SigninCallbackBlock = () -> Void
 /// This is the starting point for signing into the app. The SigninViewController acts
 /// as the parent view control, loading and displaying child view controllers that
 /// hanadle each step in the signin flow.
+/// It is expected that the controller will always be presented modally.
 ///
 class SigninViewController : UIViewController
 {
     @IBOutlet var containerView: UIView!
     @IBOutlet var helpButton: UIButton!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
     @IBOutlet var icon: UIImageView!
     @IBOutlet var toggleSigninButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
@@ -42,11 +45,105 @@ class SigninViewController : UIViewController
         super.viewDidLoad();
         navigationController?.navigationBarHidden = true
 
+        backButton.sizeToFit()
+        cancelButton.sizeToFit()
+        configureBackAndCancelButtons(false)
+
         showSigninEmailViewController()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+
+
+    /// Configure the presense of the back and cancel buttons. Optionally animated.
+    ///
+    /// - Parameters: 
+    ///     - animated: Whether a change to the presense of the back or cancel buttons
+    /// should be animated.
+    ///
+    func configureBackAndCancelButtons(animated: Bool) {
+        // We want to show a cancel button if there is already a blog or wpcom account,
+        // but only on the first "screen". 
+        // Otherwise we want to show a back button if the child VC allows it, and no
+        // previous child vcs disallow it (no going back once you have a blocking action).
+        // Nicely transition the alpha and visibility of the buttons.
+
+        var buttonToShow: UIButton?
+        var buttonsToHide = [UIButton]()
+
+        if childViewControllerStack.count == 1 && isCancellable() {
+            buttonToShow = cancelButton
+            buttonsToHide.append(backButton)
+
+        } else if childViewControllerStack.count > 1 && shouldShowBackButton() {
+            buttonToShow = backButton
+            buttonsToHide.append(cancelButton)
+
+        } else {
+            buttonsToHide.append(cancelButton)
+            buttonsToHide.append(backButton)
+        }
+
+        if !animated {
+            buttonToShow?.alpha = 1.0
+            buttonToShow?.hidden = false
+            for button in buttonsToHide {
+                button.hidden = true
+                button.alpha = 0.0
+            }
+            return
+        }
+
+        buttonToShow?.hidden = false
+        UIView.animateWithDuration(0.2,
+            animations: {
+                buttonToShow?.alpha = 1.0
+                for button in buttonsToHide {
+                    button.alpha = 0.0
+                }
+            },
+            completion: { (completed) in
+                for button in buttonsToHide {
+                    button.hidden = true
+                }
+        })
+    }
+
+
+    /// Checks if the signin vc modal should show a back button. The back button 
+    /// visible when there is more than one child vc presented, and there is not
+    /// a case where a `SigninChildViewController.backButtonEnabled` in the stack 
+    /// returns false.
+    ///
+    /// - Returns: True if the back button should be visible. False otherwise.
+    ///
+    func shouldShowBackButton() -> Bool {
+        for childController in childViewControllerStack {
+            if let controller = childController as? SigninChildViewController {
+                if !controller.backButtonEnabled() {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+
+    /// Checks if the signin vc modal should be cancellable. The controller is
+    /// cancellable when there is a default wpcom account, or at least one 
+    /// self-hosted blog.
+    ///
+    /// - Returns: True if cancellable. False otherwise. 
+    ///
+    func isCancellable() -> Bool {
+        // if there is an existing blog, or an existing account return true.
+        let context = ContextManager.sharedInstance().mainContext
+        let blogService = BlogService(managedObjectContext: context)
+        let accountService = AccountService(managedObjectContext: context)
+
+        return accountService.defaultWordPressComAccount() != nil || blogService.blogCountForAllAccounts() > 0
     }
 
 
@@ -97,7 +194,7 @@ class SigninViewController : UIViewController
                 self?.dismissViewControllerAnimated(true, completion: nil)
             },
             failure: { (error) -> Void in
-                print("Error: \(error)")
+                DDLogSwift.logError("Error: \(error)")
             })
         
         pushChildViewController(controller, animated: false)
@@ -230,6 +327,16 @@ class SigninViewController : UIViewController
     }
 
 
+    @IBAction func handleBackButtonTapped(sender: UIButton) {
+        popChildViewController(true)
+    }
+
+
+    @IBAction func handleCancelButtonTapped(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+
     // MARK: - Child Controller Wrangling
 
 
@@ -238,17 +345,18 @@ class SigninViewController : UIViewController
     func pushChildViewController(viewController: UIViewController, animated: Bool) {
         if isAnimating { return }
         
+        let currentChildController = currentChildViewController
         addViewController(viewController)
-        
+        childViewControllerStack.append(viewController)
+
+        configureBackAndCancelButtons(animated)
+
         if !animated {
-            removeViewController(currentChildViewController)
-            
+            removeViewController(currentChildController)
             containerView.pinSubview(viewController.view, toAttributes: [.Top, .Bottom, .Width, .Leading])
-            childViewControllerStack.append(viewController)
+
         } else {
-            animateFromViewController(currentChildViewController, toViewController: viewController, direction: .Right, completion: {
-                self.childViewControllerStack.append(viewController)
-            })
+            animateFromViewController(currentChildController, toViewController: viewController, direction: .Right, completion: nil)
         }
     }
     
@@ -261,7 +369,7 @@ class SigninViewController : UIViewController
         }
 
         guard let currentChild =  childViewControllerStack.popLast() else { return }
-        
+        configureBackAndCancelButtons(animated)
         if !animated {
             removeViewController(currentChild)
             

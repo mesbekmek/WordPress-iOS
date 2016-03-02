@@ -70,22 +70,45 @@
                                     </mask>
                                 </variation>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tu-my-NYR" customClass="WPNUXBackButton">
+                                <rect key="frame" x="8" y="36" width="52" height="22"/>
+                                <state key="normal" title="Back" image="btn-back-chevron">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="btn-back-chevron-tapped"/>
+                                <connections>
+                                    <action selector="handleBackButtonTapped:" destination="Tao-m9-FwL" eventType="touchUpInside" id="Ved-LK-aY3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWC-n1-Jwr" customClass="WPNUXSecondaryButton">
+                                <rect key="frame" x="8" y="36" width="56" height="34"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleCancelButtonTapped:" destination="Tao-m9-FwL" eventType="touchUpInside" id="g1j-Q7-B9u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52941176470588236" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lYS-s4-06N" secondAttribute="trailing" constant="16" id="628-Zn-Ng2"/>
+                            <constraint firstItem="vWC-n1-Jwr" firstAttribute="top" secondItem="fWg-2A-gdx" secondAttribute="bottom" constant="16" id="6pf-sX-1uY"/>
                             <constraint firstItem="cB1-fT-M12" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="AW2-f9-fHP"/>
                             <constraint firstAttribute="trailing" secondItem="vLP-Cr-5QN" secondAttribute="trailing" id="ByG-MP-ofx"/>
                             <constraint firstItem="lYS-s4-06N" firstAttribute="top" secondItem="fWg-2A-gdx" secondAttribute="bottom" constant="16" id="DCN-nG-cqb"/>
+                            <constraint firstItem="4tu-my-NYR" firstAttribute="top" secondItem="fWg-2A-gdx" secondAttribute="bottom" constant="16" id="EB9-Ut-F89"/>
                             <constraint firstItem="vLP-Cr-5QN" firstAttribute="leading" secondItem="or0-7M-vt1" secondAttribute="leading" id="GeC-7f-XNa"/>
                             <constraint firstItem="vLP-Cr-5QN" firstAttribute="top" secondItem="aAD-ma-8oD" secondAttribute="bottom" constant="8" id="JV4-B5-xV6"/>
                             <constraint firstItem="bLD-PM-WkM" firstAttribute="top" secondItem="H5B-Ix-mpl" secondAttribute="bottom" constant="16" id="LSV-x0-7Tb"/>
                             <constraint firstItem="aAD-ma-8oD" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="MFJ-Oc-Vry"/>
                             <constraint firstItem="vLP-Cr-5QN" firstAttribute="centerY" secondItem="or0-7M-vt1" secondAttribute="centerY" id="Uxe-r6-TgV"/>
                             <constraint firstItem="H5B-Ix-mpl" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="f3Q-JF-kDg"/>
+                            <constraint firstItem="vWC-n1-Jwr" firstAttribute="leading" secondItem="or0-7M-vt1" secondAttribute="leading" constant="8" id="fvl-9Q-3vF"/>
                             <constraint firstItem="H5B-Ix-mpl" firstAttribute="top" secondItem="cB1-fT-M12" secondAttribute="bottom" constant="16" id="hTE-Am-FDP"/>
                             <constraint firstItem="vLP-Cr-5QN" firstAttribute="centerX" secondItem="or0-7M-vt1" secondAttribute="centerX" id="jNz-iM-acD"/>
+                            <constraint firstItem="4tu-my-NYR" firstAttribute="leading" secondItem="or0-7M-vt1" secondAttribute="leading" constant="8" id="sgv-ta-oUB"/>
                         </constraints>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
@@ -101,6 +124,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="4tu-my-NYR" id="lqf-01-UYe"/>
+                        <outlet property="cancelButton" destination="vWC-n1-Jwr" id="coa-Ia-R7R"/>
                         <outlet property="containerView" destination="vLP-Cr-5QN" id="jSA-cM-UYU"/>
                         <outlet property="createAccountButton" destination="H5B-Ix-mpl" id="FQz-q6-l6H"/>
                         <outlet property="helpButton" destination="lYS-s4-06N" id="mQU-y5-z4Q"/>
@@ -412,6 +437,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn-back-chevron" width="12" height="22"/>
+        <image name="btn-back-chevron-tapped" width="12" height="22"/>
         <image name="btn-help" width="22" height="22"/>
         <image name="icon-password-field" width="18" height="22"/>
         <image name="icon-username-field" width="18" height="18"/>

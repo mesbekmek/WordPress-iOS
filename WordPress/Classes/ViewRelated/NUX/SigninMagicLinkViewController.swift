@@ -72,3 +72,10 @@ class SigninMagicLinkViewController: UIViewController
     }
 
 }
+
+
+extension SigninMagicLinkViewController : SigninChildViewController {
+    func backButtonEnabled() -> Bool {
+        return true
+    }
+}
