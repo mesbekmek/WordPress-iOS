@@ -131,6 +131,9 @@
                                             <constraint firstAttribute="height" constant="41" id="xAL-ll-YSn"/>
                                         </constraints>
                                         <state key="normal" title="Verify"/>
+                                        <connections>
+                                            <action selector="verifyTapped" destination="hwa-PJ-1Ql" eventType="touchUpInside" id="20p-UN-Esq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naN-mh-xeQ" customClass="WPNUXSecondaryButton">
                                         <rect key="frame" x="0.0" y="115" width="300" height="73"/>
@@ -153,6 +156,8 @@
                     <size key="freeformSize" width="300" height="188"/>
                     <connections>
                         <outlet property="sendCodebutton" destination="naN-mh-xeQ" id="3UB-Fl-YGT"/>
+                        <outlet property="verificationCodeField" destination="TkY-zs-sgu" id="QLE-z8-bK2"/>
+                        <outlet property="verifyButton" destination="cDy-66-mSB" id="Ujs-m1-qci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWd-Bf-GwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

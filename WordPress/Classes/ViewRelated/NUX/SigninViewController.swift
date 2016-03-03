@@ -1,6 +1,12 @@
 import UIKit
 
+enum SigninFailureError: ErrorType {
+    case NeedsMultifactorCode
+}
+
 typealias SigninCallbackBlock = () -> Void
+typealias SigninSuccessBlock = () -> Void
+typealias SigninFailureBlock = (error: ErrorType) -> Void
 
 /// This is the starting point for signing into the app. The SigninViewController acts
 /// as the parent view control, loading and displaying child view controllers that
@@ -164,7 +170,18 @@ class SigninViewController : UIViewController
 
         showAuthenticationController(email, token: token)
     }
-
+    
+    private func finishSignIn() {
+        // Check if there is an active WordPress.com account. If not, switch tab bar
+        // away from Reader to blog list view
+        let context = ContextManager.sharedInstance().mainContext
+        let accountService = AccountService(managedObjectContext: context)
+        let defaultAccount = accountService.defaultWordPressComAccount()
+        
+        if defaultAccount == nil {
+            WPTabBarController.sharedInstance().showMySitesTab()
+        }
+    }
 
     // MARK: - Controller Factories
 
@@ -191,15 +208,33 @@ class SigninViewController : UIViewController
     ///
     func showSigninPasswordViewController(email: String) {
         let controller = SigninPasswordViewController.controller(email, success: { [weak self] in
+                self?.finishSignIn()
                 self?.dismissViewControllerAnimated(true, completion: nil)
             },
-            failure: { (error) -> Void in
+            failure: { [weak self] error in
+                switch (error as! SigninFailureError) {
+                case .NeedsMultifactorCode:
+                    if let currentChild = self?.currentChildViewController as? SigninChildViewController,
+                        let loginFields = currentChild.loginFields {
+                        self?.showSignin2FAViewController(loginFields)
+                    }
+                }
+                
                 DDLogSwift.logError("Error: \(error)")
             })
         
         pushChildViewController(controller, animated: false)
     }
 
+    /// Shows the 2FA form.
+    func showSignin2FAViewController(loginFields: LoginFields) {
+        let controller = SignIn2FAViewController.controller(loginFields, success:  { [weak self] in
+            self?.finishSignIn()
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
+        pushChildViewController(controller, animated: true)
+    }
 
     /// Shows the "email link" form.
     ///
@@ -227,6 +262,7 @@ class SigninViewController : UIViewController
     func showSelfHostedSignInViewController(email: String) {
         let controller = SigninSelfHostedViewController.controller(email)
         controller.signInSuccessBlock = { [weak self] in
+            self?.finishSignIn()
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         

@@ -1,9 +1,11 @@
 import UIKit
 
 typealias SigninSelfHostedSuccessBlock = () -> Void
+typealias SignIn2FANeededBlock = () -> Void
 
 class SigninSelfHostedViewController: UIViewController {
     var signInSuccessBlock: SigninSelfHostedSuccessBlock?
+    var signIn2FANeededBlock: SignIn2FANeededBlock?
     
     var email: String!
     
@@ -41,25 +43,12 @@ class SigninSelfHostedViewController: UIViewController {
         let loginFields = LoginFields(username: emailField.text, password: passwordField.text, siteUrl: siteURLField.text, multifactorCode: nil, userIsDotCom: false, shouldDisplayMultiFactor: false)
         loginFacade.signInWithLoginFields(loginFields)
     }
-    
-    private func finishSignIn() {
-        // Check if there is an active WordPress.com account. If not, switch tab bar
-        // away from Reader to blog list view
-        let context = ContextManager.sharedInstance().mainContext
-        let accountService = AccountService(managedObjectContext: context)
-        let defaultAccount = accountService.defaultWordPressComAccount()
-        
-        if defaultAccount == nil {
-            WPTabBarController.sharedInstance().showMySitesTab()
-        }
-    }
 }
 
 extension SigninSelfHostedViewController: LoginFacadeDelegate {
     func finishedLoginWithUsername(username: String!, password: String!, xmlrpc: String!, options: [NSObject : AnyObject]!) {
         blogSyncFacade.syncBlogWithUsername(username, password: password, xmlrpc: xmlrpc, options: options) {
             self.addSiteButton.showActivityIndicator(true)
-            self.finishSignIn()
             self.signInSuccessBlock?()
         }
     }

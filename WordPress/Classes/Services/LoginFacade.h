@@ -52,7 +52,9 @@
 /**
  *  Protocol with a few methods that indicate various aspects of the login process.
  */
-@protocol LoginFacadeDelegate
+@protocol LoginFacadeDelegate <NSObject>
+
+@optional
 
 /**
  *  This is called when we need to indicate to the a messagea about the current login (e.g. "Signing In", "Authenticating", "Syncing", etc.)
@@ -82,7 +84,6 @@
  *  @param options  the options dictionary coming back from the `wp.getOptions` method.
  */
 - (void)finishedLoginWithUsername:(NSString *)username password:(NSString *)password xmlrpc:(NSString *)xmlrpc options:(NSDictionary * )options;
-
 
 /**
  *  Called when finished logging in to a WordPress.com site

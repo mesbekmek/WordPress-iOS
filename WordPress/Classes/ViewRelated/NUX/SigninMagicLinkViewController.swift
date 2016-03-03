@@ -78,4 +78,11 @@ extension SigninMagicLinkViewController : SigninChildViewController {
     func backButtonEnabled() -> Bool {
         return true
     }
+    
+    var loginFields: LoginFields? {
+        get {
+            return LoginFields(username: email, password: nil, siteUrl: nil, multifactorCode: nil, userIsDotCom: true, shouldDisplayMultiFactor: false)
+        }
+        set {}
+    }
 }

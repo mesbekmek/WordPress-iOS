@@ -142,4 +142,11 @@ extension SigninAuthenticationTokenViewController : SigninChildViewController
     func backButtonEnabled() -> Bool {
         return false
     }
+    
+    var loginFields: LoginFields? {
+        get {
+            return LoginFields(username: email, password: token, siteUrl: nil, multifactorCode: nil, userIsDotCom: true, shouldDisplayMultiFactor: false)
+        }
+        set {}
+    }
 }

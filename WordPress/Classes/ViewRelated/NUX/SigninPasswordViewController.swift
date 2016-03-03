@@ -1,16 +1,19 @@
 import UIKit
 
-typealias SigninSuccessBlock = () -> Void
-typealias SigninFailureBlock = (error: NSError) -> Void
-
-class SigninPasswordViewController: UIViewController {
+class SigninPasswordViewController: UIViewController, SigninChildViewController {
     var signinSuccessCallback: SigninSuccessBlock?
     var signinFailureCallback: SigninFailureBlock?
-    
+
     @IBOutlet weak var signInButton: WPNUXMainButton!
     @IBOutlet weak var passwordField: UITextField!
     
-    var email: String?
+    var email: String!
+    var loginFields: LoginFields? {
+        get {
+            return LoginFields(username: email, password: passwordField.text, siteUrl: nil, multifactorCode: nil, userIsDotCom: true, shouldDisplayMultiFactor: false)
+        }
+        set {}
+    }
     
     lazy var loginFacade: LoginFacade = {
         let facade = LoginFacade()
@@ -20,6 +23,10 @@ class SigninPasswordViewController: UIViewController {
     
     lazy var blogSyncFacade = BlogSyncFacade()
     lazy var accountServiceFacade = AccountServiceFacade()
+    
+    func backButtonEnabled() -> Bool {
+        return true
+    }
     
     class func controller(email: String, success: SigninSuccessBlock, failure: SigninFailureBlock) -> SigninPasswordViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
@@ -45,9 +52,11 @@ extension SigninPasswordViewController: LoginFacadeDelegate {
     }
     
     func finishedLoginWithUsername(username: String!, authToken: String!, requiredMultifactorCode: Bool) {
-        let failureHandler: ((NSError!) -> Void)! = { error in
+        let failureHandler: ((NSError!) -> Void)! = { [weak self] error in
             // dismiss login message
             // display remote error
+            
+            self?.signinFailureCallback?(error: SigninFailureError.NeedsMultifactorCode)
         }
         
         let account = accountServiceFacade.createOrUpdateWordPressComAccountWithUsername(username, authToken: authToken)
@@ -71,6 +80,6 @@ extension SigninPasswordViewController: LoginFacadeDelegate {
     }
     
     func needsMultifactorCode() {
-        
+        self.signinFailureCallback?(error: SigninFailureError.NeedsMultifactorCode)
     }
 }
