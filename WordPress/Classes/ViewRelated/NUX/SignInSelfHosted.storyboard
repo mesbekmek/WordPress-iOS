@@ -20,10 +20,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="188"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PcP-4C-xy4">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="67"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="51"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username / Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZg-CV-XkC" customClass="WPWalkthroughTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="23"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="Username / Email"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -32,9 +32,12 @@
                                                     <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-username-field"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Yjw-hC-rwy" id="L9n-Hg-ogo"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNd-HR-WPZ" customClass="WPWalkthroughTextField">
-                                                <rect key="frame" x="0.0" y="23" width="300" height="22"/>
+                                                <rect key="frame" x="0.0" y="17" width="300" height="17"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -43,9 +46,12 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showSecureTextEntryToggle" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-password-field"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Yjw-hC-rwy" id="A9N-pb-XBs"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Site Address (URL)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYe-55-wlY" customClass="WPWalkthroughTextField">
-                                                <rect key="frame" x="0.0" y="45" width="300" height="23"/>
+                                                <rect key="frame" x="0.0" y="34" width="300" height="17"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
@@ -53,11 +59,14 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showTopLineSeparator" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="leftViewImage" value="icon-url-field"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Yjw-hC-rwy" id="apD-W9-wAt"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prk-hW-xXC" customClass="WPNUXMainButton">
-                                        <rect key="frame" x="0.0" y="82" width="300" height="41"/>
+                                        <rect key="frame" x="0.0" y="66" width="300" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="FEc-vS-lZ8"/>
                                         </constraints>
@@ -67,7 +76,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T2w-xW-3eW" userLabel="Padding View">
-                                        <rect key="frame" x="0.0" y="138" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="122" width="300" height="66"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>

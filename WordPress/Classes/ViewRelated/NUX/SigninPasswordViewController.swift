@@ -45,6 +45,16 @@ class SigninPasswordViewController: UIViewController, SigninChildViewController 
         passwordField.placeholder = NSLocalizedString("Password", comment: "")
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Not sure why this should be needed, but it doesn't have an affect
+        // if we don't dispatch it.
+        dispatch_async(dispatch_get_main_queue()) {
+            self.passwordField.becomeFirstResponder()
+        }
+    }
+    
     @IBAction func signInButtonTapped() {
         signInButton.showActivityIndicator(true)
         

@@ -22,6 +22,11 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
         return controller
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        emailTextField.becomeFirstResponder()
+    }
     // MARK: - Actions
     
     @IBAction func handleSubmitTapped() {

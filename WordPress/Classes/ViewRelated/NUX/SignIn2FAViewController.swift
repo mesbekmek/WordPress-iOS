@@ -37,6 +37,12 @@ class SignIn2FAViewController: UIViewController {
         setSendCodeButtonText()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        verificationCodeField.becomeFirstResponder()
+    }
+    
     private func setSendCodeButtonText() {
         // Text: Verification Code SMS
         let codeText = NSLocalizedString("Enter the code on your authenticator app or ", comment: "Message displayed when a verification code is needed")

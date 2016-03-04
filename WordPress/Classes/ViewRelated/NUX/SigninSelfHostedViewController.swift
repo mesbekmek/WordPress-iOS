@@ -37,6 +37,14 @@ class SigninSelfHostedViewController: UIViewController {
         emailField.text = email
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.passwordField.becomeFirstResponder()
+        }
+    }
+    
     @IBAction func addSiteTapped() {
         addSiteButton.showActivityIndicator(true)
         
@@ -67,5 +75,19 @@ extension SigninSelfHostedViewController: LoginFacadeDelegate {
     
     func needsMultifactorCode() {
         
+    }
+}
+
+extension SigninSelfHostedViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            siteURLField.becomeFirstResponder()
+        } else if textField == siteURLField {
+            addSiteTapped()
+        }
+        
+        return true
     }
 }
