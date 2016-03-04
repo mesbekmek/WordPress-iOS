@@ -39,6 +39,12 @@ class SigninPasswordViewController: UIViewController, SigninChildViewController 
         return controller
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        passwordField.placeholder = NSLocalizedString("Password", comment: "")
+    }
+    
     @IBAction func signInButtonTapped() {
         signInButton.showActivityIndicator(true)
         

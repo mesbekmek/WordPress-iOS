@@ -165,6 +165,12 @@
 - (void)setSecureTextEntry:(BOOL)secureTextEntry
 {
     [super setSecureTextEntry:secureTextEntry];
+    
+    // This is a fix for a bug where the text field reverts to a system
+    // serif font if you disable secure text entry while it contains text.
+    self.font = nil;
+    self.font = [WPNUXUtility textFieldFont];
+    
     [self updateSecureTextEntryToggleImage];
 }
 
