@@ -53,23 +53,6 @@
                                     <action selector="handleCreateAccountTapped:" destination="Tao-m9-FwL" eventType="touchUpInside" id="fnu-n5-18L"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vLP-Cr-5QN">
-                                <rect key="frame" x="0.0" y="199" width="600" height="202"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="202" placeholder="YES" id="c3z-X0-R5F"/>
-                                    <constraint firstAttribute="width" constant="320" id="eH3-Le-W7r"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="eH3-Le-W7r"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="eH3-Le-W7r"/>
-                                    </mask>
-                                </variation>
-                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tu-my-NYR" customClass="WPNUXBackButton">
                                 <rect key="frame" x="8" y="36" width="52" height="22"/>
                                 <state key="normal" title="Back" image="btn-back-chevron">
@@ -89,6 +72,23 @@
                                     <action selector="handleCancelButtonTapped:" destination="Tao-m9-FwL" eventType="touchUpInside" id="g1j-Q7-B9u"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vLP-Cr-5QN">
+                                <rect key="frame" x="0.0" y="199" width="600" height="202"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="202" id="c3z-X0-R5F"/>
+                                    <constraint firstAttribute="width" constant="320" id="eH3-Le-W7r"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eH3-Le-W7r"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="eH3-Le-W7r"/>
+                                    </mask>
+                                </variation>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.52941176470588236" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -151,14 +151,14 @@
                         <viewControllerLayoutGuide type="bottom" id="DCn-4A-iHj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" id="TLo-n9-12X">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nzK-YI-3Og">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Hp-LGi" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Hp-LGi" customClass="WPWalkthroughTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -169,8 +169,8 @@
                                             <outlet property="delegate" destination="BxT-kY-85j" id="SIg-Bb-UbZ"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7" customClass="WPNUXMainButton">
-                                        <rect key="frame" x="0.0" y="59" width="320" height="41"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D2-6S-8E7" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="15" width="320" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="P2r-VX-ZRE"/>
                                         </constraints>
@@ -181,6 +181,10 @@
                                             <action selector="handleSubmitTapped:" destination="BxT-kY-85j" eventType="touchUpInside" id="ndN-Ah-99O"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSV-PP-gwb" userLabel="Padding View">
+                                        <rect key="frame" x="0.0" y="71" width="320" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -194,7 +198,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="100"/>
+                    <size key="freeformSize" width="320" height="115"/>
                     <connections>
                         <outlet property="emailTextField" destination="Kya-Hp-LGi" id="2WI-Ab-7th"/>
                         <outlet property="submitButton" destination="1D2-6S-8E7" id="72q-S9-KZs"/>
@@ -202,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7p-aT-8Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2006" y="48.5"/>
+            <point key="canvasLocation" x="2006" y="29.5"/>
         </scene>
         <!--Signin Password View Controller-->
         <scene sceneID="oim-lI-MzE">
@@ -219,8 +223,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="LlC-dz-VFT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGt-DX-Cgl" customClass="WPWalkthroughTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGt-DX-Cgl" customClass="WPWalkthroughTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -232,8 +236,8 @@
                                             <outlet property="delegate" destination="UGr-pL-EXH" id="huP-XK-s0G"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rps-5X-mSQ" customClass="WPNUXMainButton">
-                                        <rect key="frame" x="0.0" y="59" width="320" height="41"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rps-5X-mSQ" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="15" width="320" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="22f-0A-9ca"/>
                                         </constraints>
@@ -244,6 +248,10 @@
                                             <action selector="signInButtonTapped" destination="UGr-pL-EXH" eventType="touchUpInside" id="OVw-Aw-vsP"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFw-Uq-VSk" userLabel="Padding View">
+                                        <rect key="frame" x="0.0" y="71" width="320" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -288,8 +296,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-JX-VGI">
                                 <rect key="frame" x="0.0" y="32" width="320" height="68"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkJ-nc-tWO" customClass="WPNUXMainButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkJ-nc-tWO" customClass="WPNUXMainButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
                                         <state key="normal" title="Email Link">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -298,7 +306,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egu-Kx-qNn" customClass="WPNUXSecondaryButton">
-                                        <rect key="frame" x="0.0" y="38" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="30" width="320" height="30"/>
                                         <state key="normal" title="Use Password Instead">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -306,6 +314,10 @@
                                             <action selector="handleUsePasswordTapped:" destination="Ip5-4J-eQa" eventType="touchUpInside" id="Ivm-Ro-jeV"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-d9-9ri" userLabel="Padding View">
+                                        <rect key="frame" x="0.0" y="68" width="320" height="0.0"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -350,7 +362,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fG-ZO-BjD" customClass="WPNUXMainButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                         <state key="normal" title="Open Mail">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -359,7 +371,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4Q-2h-jX4" customClass="WPNUXSecondaryButton">
-                                        <rect key="frame" x="0.0" y="70" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="320" height="30"/>
                                         <state key="normal" title="Skip">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -367,6 +379,10 @@
                                             <action selector="handleSkipTapped:" destination="RuG-5l-h0O" eventType="touchUpInside" id="AEu-aQ-fcD"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="OaM-Cm-UPb" userLabel="Padding View">
+                                        <rect key="frame" x="0.0" y="76" width="320" height="24"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
