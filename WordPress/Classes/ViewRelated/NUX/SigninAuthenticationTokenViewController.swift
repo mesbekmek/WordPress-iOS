@@ -139,7 +139,7 @@ extension SigninAuthenticationTokenViewController : LoginFacadeDelegate
 
 extension SigninAuthenticationTokenViewController : SigninChildViewController
 {
-    func backButtonEnabled() -> Bool {
+    var backButtonEnabled: Bool {
         return false
     }
     

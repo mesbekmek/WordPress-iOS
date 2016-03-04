@@ -24,10 +24,10 @@ class SigninPasswordViewController: UIViewController, SigninChildViewController 
     lazy var blogSyncFacade = BlogSyncFacade()
     lazy var accountServiceFacade = AccountServiceFacade()
     
-    func backButtonEnabled() -> Bool {
+    var backButtonEnabled: Bool {
         return true
     }
-    
+
     class func controller(email: String, success: SigninSuccessBlock, failure: SigninFailureBlock) -> SigninPasswordViewController {
         let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninPasswordViewController") as! SigninPasswordViewController

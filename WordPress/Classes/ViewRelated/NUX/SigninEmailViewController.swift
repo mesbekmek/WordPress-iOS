@@ -51,7 +51,7 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
 }
 
 extension SigninEmailViewController : SigninChildViewController {
-    func backButtonEnabled() -> Bool {
+    var backButtonEnabled: Bool {
         return true
     }
     

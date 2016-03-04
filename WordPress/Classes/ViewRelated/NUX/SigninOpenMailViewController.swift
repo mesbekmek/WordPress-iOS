@@ -35,12 +35,11 @@ class SigninOpenMailViewController: UIViewController
     
 }
 
-extension SigninOpenMailViewController : SigninChildViewController
-{
-    func backButtonEnabled() -> Bool {
+extension SigninOpenMailViewController : SigninChildViewController {
+    var backButtonEnabled: Bool {
         return true
     }
-    
+
     var loginFields: LoginFields? {
         get {
             return LoginFields(username: email, password: nil, siteUrl: nil, multifactorCode: nil, userIsDotCom: true, shouldDisplayMultiFactor: false)

@@ -128,7 +128,7 @@ class SigninViewController : UIViewController
     func shouldShowBackButton() -> Bool {
         for childController in childViewControllerStack {
             if let controller = childController as? SigninChildViewController {
-                if !controller.backButtonEnabled() {
+                if !controller.backButtonEnabled {
                     return false
                 }
             }
