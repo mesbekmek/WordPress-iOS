@@ -7,8 +7,8 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
     var emailValidationSuccessCallback: SigninValidateEmailBlock?
     var emailValidationFailureCallback: SigninValidateEmailBlock?
 
-    @IBOutlet var emailTextField:UITextField!
-    @IBOutlet var submitButton:UIButton!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var submitButton: WPNUXMainButton!
 
     let accountServiceRemote = AccountServiceRemoteREST()
 
@@ -24,7 +24,7 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
 
     // MARK: - Actions
     
-    @IBAction func handleSubmitTapped(sender: UIButton) {
+    @IBAction func handleSubmitTapped() {
         if let email = emailTextField.text  {
             checkEmailAddress(email)
         }
@@ -35,18 +35,24 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
     func checkEmailAddress(email: String) {
         // TODO: Need some basic validation
 
-        emailTextField.enabled = false
-
-        // TODO: Need to show a busy spinner while doing hte look up.
+        setLoading(true)
+        
         let service = AccountService(managedObjectContext: ContextManager.sharedInstance().mainContext)
         service.findExistingAccountByEmail(email,
             success: { [weak self] in
                 self?.emailValidationSuccessCallback?(email)
+                self?.setLoading(false)
             }, failure: { [weak self] (error: NSError!) in
                 DDLogSwift.logError(error.localizedDescription)
-                self?.emailTextField.enabled = true
                 self?.emailValidationFailureCallback?(email)
+                self?.setLoading(false)                
         })
+    }
+    
+    private func setLoading(loading: Bool) {
+        emailTextField.enabled = !loading
+        submitButton.enabled = !loading
+        submitButton.showActivityIndicator(loading)
     }
 }
 
