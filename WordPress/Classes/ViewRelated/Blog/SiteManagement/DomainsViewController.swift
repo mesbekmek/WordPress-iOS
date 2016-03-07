@@ -9,18 +9,22 @@ public class DomainsViewController: UITableViewController
     
     /// The blog to manage domains of
     ///
-    var blog: Blog!
+    let blog: Blog
     
     // MARK: - Initializer
 
-    /// Preferred initializer for DomainsViewController
+    /// Designated initializer for DomainsViewController
     ///
     /// - Parameters:
     ///     - blog: The Blog to manage domains of
     ///
-    public convenience init(blog: Blog) {
-        self.init(style: .Grouped)
+    public init(blog: Blog) {
         self.blog = blog
+        super.init(style: .Grouped)
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - View Lifecycle
@@ -34,7 +38,7 @@ public class DomainsViewController: UITableViewController
         WPStyleGuide.configureColorsForView(view, andTableView: tableView)
     }
     
-    // MARK: Table View Data Source
+    // MARK: - Table View Data Source
     
     override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 0
