@@ -20,7 +20,7 @@ class SigninSelfHostedViewController: UIViewController {
     lazy var blogSyncFacade = BlogSyncFacade()
     
     class func controller(email: String, success: SigninSuccessBlock, failure: SigninFailureBlock) -> SigninSelfHostedViewController {
-        let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninSelfHostedViewController") as! SigninSelfHostedViewController
         
         controller.email = email

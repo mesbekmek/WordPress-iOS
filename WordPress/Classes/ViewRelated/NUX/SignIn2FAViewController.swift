@@ -22,7 +22,7 @@ class SignIn2FAViewController: UIViewController {
     lazy var accountServiceFacade = AccountServiceFacade()
     
     class func controller(loginFields: LoginFields, success: SigninSuccessBlock?) -> SignIn2FAViewController {
-        let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Signin", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SignIn2FAViewController") as! SignIn2FAViewController
         
         controller.loginFields = loginFields
