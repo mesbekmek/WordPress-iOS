@@ -1,11 +1,8 @@
 import UIKit
 
-typealias SigninSelfHostedSuccessBlock = () -> Void
-typealias SignIn2FANeededBlock = () -> Void
-
 class SigninSelfHostedViewController: UIViewController {
-    var signInSuccessBlock: SigninSelfHostedSuccessBlock?
-    var signIn2FANeededBlock: SignIn2FANeededBlock?
+    var signInSuccessBlock: SigninSuccessBlock?
+    var signInFailureBlock: SigninFailureBlock?
     
     var email: String!
     
@@ -22,11 +19,13 @@ class SigninSelfHostedViewController: UIViewController {
     
     lazy var blogSyncFacade = BlogSyncFacade()
     
-    class func controller(email: String) -> SigninSelfHostedViewController {
+    class func controller(email: String, success: SigninSuccessBlock, failure: SigninFailureBlock) -> SigninSelfHostedViewController {
         let storyboard = UIStoryboard(name: "SignInSelfHosted", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("SigninSelfHostedViewController") as! SigninSelfHostedViewController
         
         controller.email = email
+        controller.signInSuccessBlock = success
+        controller.signInFailureBlock = failure
         
         return controller
     }
@@ -74,7 +73,7 @@ extension SigninSelfHostedViewController: LoginFacadeDelegate {
     }
     
     func needsMultifactorCode() {
-        
+        self.signInFailureBlock?(error: SigninFailureError.NeedsMultifactorCode)
     }
 }
 
@@ -89,5 +88,18 @@ extension SigninSelfHostedViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+}
+
+extension SigninSelfHostedViewController: SigninChildViewController {
+    var backButtonEnabled: Bool {
+        return true
+    }
+    
+    var loginFields: LoginFields? {
+        get {
+            return LoginFields(username: emailField.text, password: passwordField.text, siteUrl: siteURLField.text, multifactorCode: nil, userIsDotCom: false, shouldDisplayMultiFactor: true)
+        }
+        set {}
     }
 }

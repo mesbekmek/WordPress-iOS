@@ -275,11 +275,20 @@ class SigninViewController : UIViewController
     ///     - email: The user's email address.
     ///
     func showSelfHostedSignInViewController(email: String) {
-        let controller = SigninSelfHostedViewController.controller(email)
-        controller.signInSuccessBlock = { [weak self] in
+        let controller = SigninSelfHostedViewController.controller(email, success: { [weak self] in
             self?.finishSignIn()
             self?.dismissViewControllerAnimated(true, completion: nil)
-        }
+        }, failure: { [weak self] error in
+            switch (error as! SigninFailureError) {
+            case .NeedsMultifactorCode:
+                if let currentChild = self?.currentChildViewController as? SigninChildViewController,
+                    let loginFields = currentChild.loginFields {
+                        self?.showSignin2FAViewController(loginFields)
+                }
+            }
+            
+            DDLogSwift.logError("Error: \(error)")
+        })
         
         pushChildViewController(controller, animated: true)
     }
