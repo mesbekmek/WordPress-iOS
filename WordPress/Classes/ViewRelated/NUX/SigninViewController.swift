@@ -209,7 +209,7 @@ class SigninViewController : UIViewController
                 self?.emailValidationSuccess(email)
             },
             failure: { [weak self] email in
-                self?.emailValidationSuccess(email)
+                self?.emailValidationFailure(email)
             })
 
         pushChildViewController(controller, animated: false)
