@@ -41,6 +41,8 @@
 #import "NSURL+Util.h"
 #import "UIApplication+Helpers.h"
 
+#import "OnePasswordFacade.h"
+
 #import "PhotonImageURLHelper.h"
 #import "PostListFooterView.h"
 #import "PostMetaButton.h"
@@ -100,6 +102,7 @@
 #import "WPTabBarController.h"
 #import "WPSearchController.h"
 #import "WPSearchControllerConfigurator.h"
+#import "WPWalkthroughTextField.h"
 
 #import <WordPressComAnalytics/WPAnalytics.h>
 

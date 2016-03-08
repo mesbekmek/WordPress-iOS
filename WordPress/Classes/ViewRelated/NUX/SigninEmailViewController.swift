@@ -7,7 +7,9 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
     var emailValidationSuccessCallback: SigninValidateEmailBlock?
     var emailValidationFailureCallback: SigninValidateEmailBlock?
 
-    @IBOutlet var emailTextField: UITextField!
+    lazy var onePasswordFacade = OnePasswordFacade()
+
+    @IBOutlet var emailTextField: WPWalkthroughTextField!
     @IBOutlet var submitButton: WPNUXMainButton!
 
     let accountServiceRemote = AccountServiceRemoteREST()
@@ -22,17 +24,39 @@ class SigninEmailViewController : UIViewController, UITextFieldDelegate
         return controller
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addOnePasswordButton()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         emailTextField.becomeFirstResponder()
     }
+    
+    private func addOnePasswordButton() {
+        let onePasswordButton = UIButton(type: .Custom)
+        onePasswordButton.setImage(UIImage(named: "onepassword-wp-button"), forState: .Normal)
+        onePasswordButton.addTarget(self, action: "onePasswordButtonTapped", forControlEvents: .TouchUpInside)
+        onePasswordButton.sizeToFit()
+        
+        emailTextField.rightView = onePasswordButton
+        emailTextField.rightViewPadding = UIOffset(horizontal: 9.0, vertical: 0.0)
+        
+        emailTextField.rightViewMode = onePasswordFacade.isOnePasswordEnabled() ? .Always : .Never
+    }
+    
     // MARK: - Actions
     
     @IBAction func handleSubmitTapped() {
         if let email = emailTextField.text  {
             checkEmailAddress(email)
         }
+    }
+    
+    @IBAction private func onePasswordButtonTapped() {
     }
 
     // MARK: -
