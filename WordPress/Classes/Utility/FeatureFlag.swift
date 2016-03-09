@@ -5,8 +5,6 @@ enum FeatureFlag: Int {
     /// My Sites > Site > People
     /// Development on hold while we focus on Me
     case People
-    /// My Sites > Site > Sharing
-    case Sharing
     /// My Sites > Site > Plans
     case Plans
     /// New Signin
@@ -15,8 +13,6 @@ enum FeatureFlag: Int {
     var enabled: Bool {
         switch self {
         case .People:
-            return build(.Debug)
-        case .Sharing:
             return build(.Debug)
         case .Plans:
             return build(.Debug)
