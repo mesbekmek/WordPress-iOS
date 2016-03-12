@@ -13,8 +13,9 @@ public class DomainsViewController: UITableViewController
 
     // MARK: - Properties
 
-    private var contents: [SectionContent]!
-
+    private var blogDomains = [DomainInfo]()
+    private var contents = [SectionContent]()
+    
     // MARK: - Initializer
 
     /// Designated initializer for DomainsViewController
@@ -38,24 +39,28 @@ public class DomainsViewController: UITableViewController
         
         title = NSLocalizedString("Domains", comment: "Title of blog domain management page")
         
-        contents = [.AddDomain]
-        
+        blogDomains = [DomainInfo(name: blog.hostname!)]
+        contents = [.AddDomain, .YourDomains(blogDomains)]
+
         WPStyleGuide.resetReadableMarginsForTableView(tableView)
         WPStyleGuide.configureColorsForView(view, andTableView: tableView)
     }
     
-    // MARK: - Table View Data Source
+    // MARK: - Table View Data Model
     
     /// Sections in the controller
     ///
     private enum SectionContent
     {
         case AddDomain
-        
+        case YourDomains([DomainInfo])
+
         var numberOfRows: Int {
             switch self {
             case .AddDomain:
                 return AddDomainContent.rows.count
+            case .YourDomains(let domains):
+                return domains.count
             }
         }
 
@@ -63,6 +68,8 @@ public class DomainsViewController: UITableViewController
             switch self {
             case .AddDomain:
                 return NSLocalizedString("Add A New Domain", comment: "Section title for 'Add A New Domain' in Domains screen")
+            case .YourDomains:
+                return NSLocalizedString("Your Domains", comment: "Section title for 'Your Domains' in Domains screen")
             }
         }
         
@@ -70,6 +77,8 @@ public class DomainsViewController: UITableViewController
             switch self {
             case .AddDomain:
                 return AddDomainContent.rows[row].cell
+            case .YourDomains(let domains):
+                return domains[row].cell
             }
         }
     }
@@ -106,6 +115,23 @@ public class DomainsViewController: UITableViewController
         }
     }
     
+    /// Domain information
+    ///
+    private struct DomainInfo
+    {
+        var name: String
+
+        var cell: UITableViewCell {
+            let cell = WPTableViewCell(style: .Value1, reuseIdentifier: nil)
+            cell.textLabel?.text = name
+            WPStyleGuide.configureTableViewCell(cell)
+            
+            return cell
+        }
+    }
+    
+    // MARK: - Table View Data Source
+
     override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return contents.count
     }
@@ -129,8 +155,9 @@ public class DomainsViewController: UITableViewController
                 findNewDomain()
             case .ConnectOwn:
                 connectOwnDomain()
-                break
             }
+        case .YourDomains(let domains):
+            showDomain(domains[indexPath.row])
         }
     }
 
@@ -153,5 +180,9 @@ public class DomainsViewController: UITableViewController
 
     private func connectOwnDomain() {
         // TODO: Implement connectOwnDomain()
+    }
+    
+    private func showDomain(domain: DomainInfo) {
+        // TODO: Implement showDomain()
     }
 }
