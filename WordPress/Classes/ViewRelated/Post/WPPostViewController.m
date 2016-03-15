@@ -1694,7 +1694,9 @@ EditImageDetailsViewControllerDelegate
     [mediaService uploadMedia:media progress:&uploadProgress success:^{
         if (media.mediaType == MediaTypeImage) {
             [WPAppAnalytics track:WPAnalyticsStatEditorAddedPhotoViaLocalLibrary withBlog:self.post.blog];
-            [self.editorView replaceLocalImageWithRemoteImage:media.remoteURL uniqueId:mediaUniqueId];
+            [self.editorView replaceLocalImageWithRemoteImage:media.remoteURL
+                                                     uniqueId:mediaUniqueId
+                                                      mediaId:[media.mediaID stringValue]];
         } else if (media.mediaType == MediaTypeVideo) {
             [WPAppAnalytics track:WPAnalyticsStatEditorAddedVideoViaLocalLibrary withBlog:self.post.blog];
             [self.editorView replaceLocalVideoWithID:mediaUniqueId
