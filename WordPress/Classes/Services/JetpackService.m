@@ -65,12 +65,16 @@
                                      BlogService *blogService = [[BlogService alloc] initWithManagedObjectContext:self.managedObjectContext];
                                      [self associateBlogIDs:blogIDs withJetpackAccount:account];
                                      if ([[accountService defaultWordPressComAccount] isEqual:account]) {
-                                         // We want this to show the user's gravatar in the Me tab
-                                         // It should only matter for the default account, but feel free to take it
-                                         // out of the `if` if it's needed for something else
-                                         [accountService updateUserDetailsForAccount:account success:nil failure:nil];
-
-                                         [blogService syncBlogsForAccount:account success:nil failure:nil];
+                                         [blogService syncBlogsForAccount:account success:^{
+                                             // Note I: We want this to show the user's gravatar in the Me tab
+                                             // It should only matter for the default account, but feel free to take it
+                                             // out of the `if` if it's needed for something else
+                                             //
+                                             // Note II: Once the blogs are sync'ed, update the account details.
+                                             // This will set the defaultBlog Relationship
+                                             //
+                                             [accountService updateUserDetailsForAccount:account success:nil failure:nil];
+                                         } failure:nil];
                                      }
                                      if (success) {
                                          success(account);
